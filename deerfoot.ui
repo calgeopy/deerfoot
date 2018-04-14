@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1231</width>
+    <height>877</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>calgeopy - deerfoot</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="title">
+       <string>GroupBox</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>GroupBox</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="1" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>File</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="QLineEdit" name="le_filename">
+            <property name="text">
+             <string>P-129_out.LAS</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="2">
+           <widget class="QComboBox" name="cb_plot1"/>
+          </item>
+          <item row="2" column="1" colspan="2">
+           <widget class="QPushButton" name="btnGetfilename">
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QPushButton" name="btn_loadlas">
+            <property name="text">
+             <string>Load</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Plot2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1" colspan="2">
+           <widget class="QComboBox" name="cb_plot2"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Plot1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1" colspan="2">
+           <widget class="QComboBox" name="cb_plot3"/>
+          </item>
+          <item row="10" column="1" colspan="2">
+           <widget class="QComboBox" name="cb_plot4"/>
+          </item>
+          <item row="12" column="1" colspan="2">
+           <widget class="QPushButton" name="btnPlotlas">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>2</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Plot</string>
+            </property>
+           </widget>
+          </item>
+          <item row="17" column="1" colspan="2">
+           <widget class="QLineEdit" name="le_topdepth"/>
+          </item>
+          <item row="18" column="1" colspan="2">
+           <widget class="QPushButton" name="btn_addtop">
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Plot3</string>
+            </property>
+           </widget>
+          </item>
+          <item row="19" column="1" colspan="2">
+           <widget class="QPushButton" name="btn_plottops">
+            <property name="text">
+             <string>Plot Tops</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Plot4</string>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="1" colspan="2">
+           <widget class="QLineEdit" name="le_topname"/>
+          </item>
+          <item row="17" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Depth</string>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="0" colspan="3">
+           <widget class="QListWidget" name="tbl_tops"/>
+          </item>
+          <item row="15" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Top</string>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="2">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>800</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>GroupBox</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="PlotWidget" name="gvPlot1">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="PlotWidget" name="gvPlot2">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="PlotWidget" name="gvPlot4">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="PlotWidget" name="gvPlot3">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+         <zorder>gvPlot4</zorder>
+         <zorder>gvPlot2</zorder>
+         <zorder>gvPlot1</zorder>
+         <zorder>gvPlot3</zorder>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
+          <string>GroupBox</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="3" column="0">
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>100</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="0">
+           <widget class="PlotWidget" name="scatter"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QGroupBox" name="groupBox_6">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="title">
+             <string>GroupBox</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_10">
+               <property name="text">
+                <string>Y</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>X</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_11">
+               <property name="text">
+                <string>Points</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>Crossplot</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="7">
+              <widget class="QLineEdit" name="le_trendlineint">
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QPushButton" name="btn_startcrossplot">
+               <property name="text">
+                <string>Launch CP</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="7">
+              <widget class="QPushButton" name="btn_trendline">
+               <property name="text">
+                <string>Add Trendline</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" colspan="4">
+              <widget class="QComboBox" name="cb_x"/>
+             </item>
+             <item row="3" column="1" colspan="4">
+              <widget class="QComboBox" name="cb_points"/>
+             </item>
+             <item row="3" column="5">
+              <widget class="QLabel" name="label_13">
+               <property name="text">
+                <string>Slope</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="7">
+              <widget class="QLineEdit" name="le_trendlineslope">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="5">
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>Intercept</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1" colspan="4">
+              <widget class="QComboBox" name="cb_y"/>
+             </item>
+             <item row="3" column="8">
+              <widget class="QScrollBar" name="horizontalScrollBar">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="8">
+              <widget class="QScrollBar" name="horizontalScrollBar_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+            <zorder>label_9</zorder>
+            <zorder>label_10</zorder>
+            <zorder>cb_x</zorder>
+            <zorder>cb_y</zorder>
+            <zorder>label_11</zorder>
+            <zorder>cb_points</zorder>
+            <zorder>btn_startcrossplot</zorder>
+            <zorder>label_8</zorder>
+            <zorder>btn_trendline</zorder>
+            <zorder>label_13</zorder>
+            <zorder>le_trendlineslope</zorder>
+            <zorder>label_12</zorder>
+            <zorder>le_trendlineint</zorder>
+            <zorder>horizontalScrollBar</zorder>
+            <zorder>horizontalScrollBar_2</zorder>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1231</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">pyqtgraph</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>btnGetfilename</tabstop>
+  <tabstop>btn_loadlas</tabstop>
+  <tabstop>cb_plot1</tabstop>
+  <tabstop>cb_plot2</tabstop>
+  <tabstop>cb_plot3</tabstop>
+  <tabstop>cb_plot4</tabstop>
+  <tabstop>btnPlotlas</tabstop>
+  <tabstop>le_topname</tabstop>
+  <tabstop>le_topdepth</tabstop>
+  <tabstop>btn_addtop</tabstop>
+  <tabstop>btn_plottops</tabstop>
+  <tabstop>tbl_tops</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
