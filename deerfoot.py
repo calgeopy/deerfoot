@@ -45,9 +45,7 @@ class AppMainWindow(QMainWindow):
         self.tbl_tops.update()
 
     def plottops(self):
-        #tops=[["Tops1",400],['Top2',600],['Top3',800]]
 
-        #print(self.tops)
         for tp in self.tops:
             self.gvPlot1.addLine(x=None, y=tp[1])
             tp_txt=pg.TextItem(text=tp[0])
