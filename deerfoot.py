@@ -14,7 +14,7 @@ from welly import Well
 class AppMainWindow(QMainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
-        loadUi("calgeopy_march27.ui", self)
+        loadUi("deerfoot.ui", self)
 
         self.actionAbout.triggered.connect(self.clickAbout)
 
@@ -47,15 +47,17 @@ class AppMainWindow(QMainWindow):
     def plottops(self):
 
         for tp in self.tops:
+            self.gvPlotzoi.addLine(x=None, y=tp[1])
+            #tp_txt = pg.TextItem(text=tp[0])
+            #self.gvPlotzoi.addItem(tp_txt)
+            #tp_txt.setPos(15,tp[1])
+            #tp_txt.setYLink(self.gvPlot1)
+
+            self.gvPlotzoi.addLine(x=None, y=tp[1])
             self.gvPlot1.addLine(x=None, y=tp[1])
-            tp_txt=pg.TextItem(text=tp[0])
-            self.gvPlot1.addItem(tp_txt)
-            tp_txt.setPos(15,tp[1],)
             self.gvPlot2.addLine(x=None, y=tp[1])
             self.gvPlot3.addLine(x=None, y=tp[1])
             self.gvPlot4.addLine(x=None, y=tp[1])
-
-
 
 
     def getfilename(self):
@@ -80,13 +82,11 @@ class AppMainWindow(QMainWindow):
 
     def loadlas(self):
         filename = self.le_filename.text()
-
         self.w = Well.from_las(filename)
-
         curves =self.w.df().columns
-        #print(curves)
 
         for c in curves:
+
             self.cb_plot1.addItem(c)
             self.cb_plot2.addItem(c)
             self.cb_plot3.addItem(c)
@@ -94,12 +94,6 @@ class AppMainWindow(QMainWindow):
             self.cb_x.addItem(c)
             self.cb_y.addItem(c)
             self.cb_points.addItem(c)
-
-
-
-
-
-
 
     def plotlas(self):
 
@@ -112,7 +106,7 @@ class AppMainWindow(QMainWindow):
         self.gvPlot1.setTitle(self.w.df().columns[self.cb_plot1.currentIndex()])
         self.gvPlot1.setMouseEnabled(x=False, y=True)
 
-        x =self.w.data[self.w.df().columns[self.cb_plot2.currentIndex()]]
+        x = self.w.data[self.w.df().columns[self.cb_plot2.currentIndex()]]
         self.gvPlot2.clear()
         self.gvPlot2.plot(x, y,pen=(2, 4))
         self.gvPlot2.invertY(True)
@@ -120,7 +114,7 @@ class AppMainWindow(QMainWindow):
         self.gvPlot2.setYLink(self.gvPlot1)
         self.gvPlot2.setMouseEnabled(x=False, y=True)
 
-        x =self.w.data[self.w.df().columns[self.cb_plot3.currentIndex()]]
+        x = self.w.data[self.w.df().columns[self.cb_plot3.currentIndex()]]
         self.gvPlot3.clear()
         self.gvPlot3.plot(x, y,pen=(3, 4))
         self.gvPlot3.invertY(True)
@@ -128,7 +122,7 @@ class AppMainWindow(QMainWindow):
         self.gvPlot3.setYLink(self.gvPlot1)
         self.gvPlot3.setMouseEnabled(x=False, y=True)
 
-        x =self.w.data[self.w.df().columns[self.cb_plot4.currentIndex()]]
+        x = self.w.data[self.w.df().columns[self.cb_plot4.currentIndex()]]
         self.gvPlot4.clear()
         self.gvPlot4.plot(x, y,pen=(4, 4))
         self.gvPlot4.invertY(True)
@@ -136,8 +130,18 @@ class AppMainWindow(QMainWindow):
         self.gvPlot4.setYLink(self.gvPlot1)
         self.gvPlot4.setMouseEnabled(x=False, y=True)
 
+        self.gvPlotzoi.clear()
+        self.gvPlotzoi.invertY(True)
+        self.gvPlotzoi.setTitle("ZOI")
+        self.gvPlotzoi.setYLink(self.gvPlot1)
+        self.gvPlotzoi.setMouseEnabled(x=False, y=True)
+        self.gvPlotzoi.setLimits(xMin=0,xMax=100)
+
+
+
 
     def startcrossplot(self):
+
         import matplotlib
         from matplotlib import cm
 
@@ -145,12 +149,10 @@ class AppMainWindow(QMainWindow):
         y = self.w.data[self.w.df().columns[self.cb_y.currentIndex()]]
         color = self.w.data[self.w.df().columns[self.cb_points.currentIndex()]]
 
-
         clrs = color/max(color)          # scale color for cmap, needs to be 0to1
         clrs = [x if x<1 else 1 for x in clrs]
-
         cmap = matplotlib.cm.get_cmap('terrain')     #sets cmap to terrain, can be any matplotlib colormap
-        c1=cmap(clrs, bytes=True )  # calls rbg from cmap
+        c1 = cmap(clrs, bytes=True )  # calls rbg from cmap
 
         self.scatter.clear()
         data1 = self.scatter.plot()
