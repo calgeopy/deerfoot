@@ -158,6 +158,13 @@
             </property>
            </spacer>
           </item>
+          <item row="18" column="0">
+           <widget class="QPushButton" name="btn_removetop">
+            <property name="text">
+             <string>Remove</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>

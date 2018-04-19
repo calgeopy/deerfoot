@@ -24,12 +24,27 @@ class AppMainWindow(QMainWindow):
 
         self.btn_addtop.clicked.connect(self.addtop)
         self.btn_plottops.clicked.connect(self.plottops)
+        self.btn_removetop.clicked.connect(self.removetop)
+
 
         self.btn_startcrossplot.clicked.connect(self.startcrossplot)
         self.btn_trendline.clicked.connect(self.plottrendline)
 
 
         self.tops=[]
+
+    def removetop(self):
+        print('remove top')
+        remtop = self.tbl_tops.currentRow()
+        self.tops.remove(self.tops[remtop])
+
+        item = self.tbl_tops.takeItem(remtop)
+        item=None
+
+        self.plotlas()
+        self.plottops()
+
+
 
 
     def addtop(self):
