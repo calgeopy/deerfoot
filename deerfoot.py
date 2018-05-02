@@ -109,6 +109,7 @@ class AppMainWindow(QMainWindow):
         self.gvPlot1.clear()
         self.gvPlot1.plot(x, y, pen=(1, 4))
         self.gvPlot1.invertY(True)
+        self.gvPlot1.hideAxis("left")
         self.gvPlot1.setTitle(self.w.df().columns[self.cb_plot1.currentIndex()])
         self.gvPlot1.setMouseEnabled(x=False, y=True)
 
@@ -116,6 +117,7 @@ class AppMainWindow(QMainWindow):
         self.gvPlot2.clear()
         self.gvPlot2.plot(x, y, pen=(2, 4))
         self.gvPlot2.invertY(True)
+        self.gvPlot2.hideAxis("left")
         self.gvPlot2.setTitle(self.w.df().columns[self.cb_plot2.currentIndex()])
         self.gvPlot2.setYLink(self.gvPlot1)
         self.gvPlot2.setMouseEnabled(x=False, y=True)
@@ -124,6 +126,7 @@ class AppMainWindow(QMainWindow):
         self.gvPlot3.clear()
         self.gvPlot3.plot(x, y, pen=(3, 4))
         self.gvPlot3.invertY(True)
+        self.gvPlot3.hideAxis("left")
         self.gvPlot3.setTitle(self.w.df().columns[self.cb_plot3.currentIndex()])
         self.gvPlot3.setYLink(self.gvPlot1)
         self.gvPlot3.setMouseEnabled(x=False, y=True)
@@ -132,6 +135,7 @@ class AppMainWindow(QMainWindow):
         self.gvPlot4.clear()
         self.gvPlot4.plot(x, y, pen=(4, 4))
         self.gvPlot4.invertY(True)
+        self.gvPlot4.hideAxis("left")
         self.gvPlot4.setTitle(self.w.df().columns[self.cb_plot4.currentIndex()])
         self.gvPlot4.setYLink(self.gvPlot1)
         self.gvPlot4.setMouseEnabled(x=False, y=True)
@@ -198,6 +202,8 @@ class AppMainWindow(QMainWindow):
         xfit = [min(x[idx]), max(x[idx])]
         yfit = [slope*xx + intercept for xx in xfit]
         self.scatter.plot(xfit, yfit, pen='r')
+
+        
 
     def clickabout(self):
         QMessageBox.about(self, "About", "Created by calgeopy\nMarch, 2018")
