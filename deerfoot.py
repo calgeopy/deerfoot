@@ -2,12 +2,14 @@ import sys
 import pyqtgraph as pg
 import numpy as np
 from pyqtgraph.Qt import QtCore, QtGui
+import pandas as pd
 
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog,QListWidgetItem,QMessageBox,QLabel)
+
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog,QListWidgetItem,QTableWidgetItem,
+                             QMessageBox,QLabel)
 from PyQt5.uic import loadUi
 
 from welly import Well
-
 
 class AppMainWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -15,6 +17,7 @@ class AppMainWindow(QMainWindow):
         loadUi("deerfoot.ui", self)
 
         self.actionAbout.triggered.connect(self.clickabout)
+        self.actionSetup.triggered.connect(self.menusetup)
 
         self.btnGetfilename.clicked.connect(self.getfilename)
         self.btn_loadlas.clicked.connect(self.loadlas)
@@ -23,6 +26,9 @@ class AppMainWindow(QMainWindow):
         self.btn_addtop.clicked.connect(self.addtop)
         self.btn_plottops.clicked.connect(self.plottops)
         self.btn_removetop.clicked.connect(self.removetop)
+
+#added by C. Hooge    
+        self.btn_loadtops.clicked.connect(self.loadtops)
 
         self.btn_startcrossplot.clicked.connect(self.startcrossplot)
         self.btn_trendline.clicked.connect(self.plottrendline)
@@ -51,6 +57,35 @@ class AppMainWindow(QMainWindow):
         # item.setCheckState(QtCore.Qt.Checked)
         self.tbl_tops.addItem(item)
         self.tbl_tops.update()
+        
+#added by C. Hooge    
+    def loadtops(self):
+        path = sys.path[-1]
+        tp = QFileDialog.getOpenFileName(self, 'Open file',
+                                            path, "Tops file (*.csv)")
+        topsfile = tp[0].replace('\\', '/')
+#        self.tp_filename.setText(str(topsfile[0].replace('\\', '/')))
+        print(topsfile)
+
+        topdata=pd.read_csv(topsfile, index_col=0);
+#        uwi = self.w.las.header['Well']['UWI'].value;
+        well_tops=topdata[(topdata.index == self.w.las.header['Well']['UWI'].value)]
+        well_tops = well_tops.drop(['KB'], axis=1).squeeze().to_dict()
+        
+        for key, value in well_tops.items():
+#            print('t',key,value)
+            self.tops.append([key, value])
+
+            text = self.tops[-1][0]+','+str(self.tops[-1][1])
+            item = QListWidgetItem(text)
+            self.tbl_tops.addItem(item)
+            self.tbl_tops.update()
+            
+#            tbl_tops2 = QTableWidget()
+            rowPosition = self.tbl_tops2.rowCount()
+            self.tbl_tops2.insertRow(rowPosition)
+            self.tbl_tops2.setItem(rowPosition , 0, QTableWidgetItem(self.tops[-1][0]))
+            self.tbl_tops2.setItem(rowPosition , 1, QTableWidgetItem(str(self.tops[-1][1])))
 
     def plottops(self):
 
@@ -109,7 +144,6 @@ class AppMainWindow(QMainWindow):
         self.gvPlot1.clear()
         self.gvPlot1.plot(x, y, pen=(1, 4))
         self.gvPlot1.invertY(True)
-        self.gvPlot1.hideAxis("left")
         self.gvPlot1.setTitle(self.w.df().columns[self.cb_plot1.currentIndex()])
         self.gvPlot1.setMouseEnabled(x=False, y=True)
 
@@ -117,7 +151,6 @@ class AppMainWindow(QMainWindow):
         self.gvPlot2.clear()
         self.gvPlot2.plot(x, y, pen=(2, 4))
         self.gvPlot2.invertY(True)
-        self.gvPlot2.hideAxis("left")
         self.gvPlot2.setTitle(self.w.df().columns[self.cb_plot2.currentIndex()])
         self.gvPlot2.setYLink(self.gvPlot1)
         self.gvPlot2.setMouseEnabled(x=False, y=True)
@@ -126,7 +159,6 @@ class AppMainWindow(QMainWindow):
         self.gvPlot3.clear()
         self.gvPlot3.plot(x, y, pen=(3, 4))
         self.gvPlot3.invertY(True)
-        self.gvPlot3.hideAxis("left")
         self.gvPlot3.setTitle(self.w.df().columns[self.cb_plot3.currentIndex()])
         self.gvPlot3.setYLink(self.gvPlot1)
         self.gvPlot3.setMouseEnabled(x=False, y=True)
@@ -135,7 +167,6 @@ class AppMainWindow(QMainWindow):
         self.gvPlot4.clear()
         self.gvPlot4.plot(x, y, pen=(4, 4))
         self.gvPlot4.invertY(True)
-        self.gvPlot4.hideAxis("left")
         self.gvPlot4.setTitle(self.w.df().columns[self.cb_plot4.currentIndex()])
         self.gvPlot4.setYLink(self.gvPlot1)
         self.gvPlot4.setMouseEnabled(x=False, y=True)
@@ -203,10 +234,14 @@ class AppMainWindow(QMainWindow):
         yfit = [slope*xx + intercept for xx in xfit]
         self.scatter.plot(xfit, yfit, pen='r')
 
-        
-
     def clickabout(self):
         QMessageBox.about(self, "About", "Created by calgeopy\nMarch, 2018")
+
+#added by C. Hooge    
+#    def menusetup(self):
+#        menusetup = QDialogClass()
+#        menusetup.exec_()        
+        #loadUi("deerfoot_setup.ui", self)
 
 
 if __name__ == '__main__':
