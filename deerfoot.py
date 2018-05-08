@@ -17,7 +17,7 @@ class AppMainWindow(QMainWindow):
         loadUi("deerfoot.ui", self)
 
         self.actionAbout.triggered.connect(self.clickabout)
-        self.actionSetup.triggered.connect(self.menusetup)
+#        self.actionSetup.triggered.connect(self.menusetup)
 
         self.btnGetfilename.clicked.connect(self.getfilename)
         self.btn_loadlas.clicked.connect(self.loadlas)
