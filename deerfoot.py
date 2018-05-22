@@ -9,25 +9,25 @@ from welly import Well
 import lxml
 
 
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog,QListWidgetItem,QTableWidgetItem,
-                             QMessageBox,QLabel)
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog, QListWidgetItem, QTableWidgetItem,
+                             QMessageBox, QLabel)
 from PyQt5.uic import loadUi
 
 
 curves_info = lxml.etree.parse('CurveData.xml').getroot()
 
-#curve_displ=[{'name': 'Son-Den','curves':['GR','DT','RHOB']}];
-#curve_displ.append({'name': 'Res','curves':['GR','RLA5','RLA4','RLA3']});
-#curve_displ.append({'name': 'Son-Shear','curves':['GR','DT','DTS']});
-#curve_displ.append({'name': 'Porosity-Lime','curves':['GR','DPHI_LIM','NPHI_LIM']});
+#curve_displ=[{'name': 'Son-Den','curves':['GR','DT','RHOB']}]
+#curve_displ.append({'name': 'Res','curves':['GR','RLA5','RLA4','RLA3']})
+#curve_displ.append({'name': 'Son-Shear','curves':['GR','DT','DTS']})
+#curve_displ.append({'name': 'Porosity-Lime','curves':['GR','DPHI_LIM','NPHI_LIM']})
 
-curve_displ=[{'name': 'Son-Den','curves':['GammaRay','Sonic','Density']}];
-curve_displ.append({'name': 'Res','curves':[['GammaRay','SelfPot'],['DeepRes','MedRes','ShallowRes']]});
-curve_displ.append({'name': 'Son-Shear','curves':['GammaRay','Sonic','ShearSonic']});
-curve_displ.append({'name': 'Porosity-Lime','curves':['GammaRay',['DenPorLime','NeutPorLime']]});
-curve_displ.append({'name': 'Porosity-Sand','curves':['GammaRay',['DenPorSand','NeutPorSand']]});
-curve_displ.append({'name': 'Porosity-Dol','curves':['GammaRay',['DenPorDol','NeutPorDol']]});
-curve_displ.append({'name': 'LMR','curves':[['GammaRay','SelfPot'],'Lambda','Mu','Density']});
+curve_displ = [{'name': 'Son-Den', 'curves': ['GammaRay', 'Sonic', 'Density']}]
+curve_displ.append({'name': 'Res', 'curves': [['GammaRay', 'SelfPot'], ['DeepRes', 'MedRes', 'ShallowRes']]})
+curve_displ.append({'name': 'Son-Shear', 'curves': ['GammaRay', 'Sonic', 'ShearSonic']})
+curve_displ.append({'name': 'Porosity-Lime', 'curves': ['GammaRay', ['DenPorLime', 'NeutPorLime']]})
+curve_displ.append({'name': 'Porosity-Sand', 'curves': ['GammaRay', ['DenPorSand', 'NeutPorSand']]})
+curve_displ.append({'name': 'Porosity-Dol', 'curves': ['GammaRay', ['DenPorDol', 'NeutPorDol']]})
+curve_displ.append({'name': 'LMR', 'curves': [['GammaRay', 'SelfPot'], 'Lambda', 'Mu','Density']})
 
 class AppMainWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -47,7 +47,10 @@ class AppMainWindow(QMainWindow):
         self.btn_plottops.clicked.connect(self.plottops)
         self.btn_removetop.clicked.connect(self.removetop)
 
-#added by C. Hooge    
+
+        # self.btn_test.clicked.connect(self.btntest)
+
+        #added by C. Hooge
         self.btn_loadtops.clicked.connect(self.loadtops)
 
         self.btn_startcrossplot.clicked.connect(self.startcrossplot)
@@ -57,7 +60,11 @@ class AppMainWindow(QMainWindow):
         self.plots = []
         self.crossplotisdispayed = False
         
-#        self.hzSlider_slope.valueChanged.connect(self.Slidervaluechange)
+    # self.hzSlider_slope.valueChanged.connect(self.Slidervaluechange)
+
+    # def btntest(self):
+    #
+    #     print( ' it works ')
 
     def removetop(self):
         remtop = self.tbl_tops.currentRow()
@@ -83,8 +90,8 @@ class AppMainWindow(QMainWindow):
         
         rowPosition = self.tbl_tops.rowCount()
         self.tbl_tops.insertRow(rowPosition)
-        self.tbl_tops.setItem(rowPosition , 0, QTableWidgetItem(self.tops[-1][0]))
-        self.tbl_tops.setItem(rowPosition , 1, QTableWidgetItem(str(self.tops[-1][1])))
+        self.tbl_tops.setItem(rowPosition, 0, QTableWidgetItem(self.tops[-1][0]))
+        self.tbl_tops.setItem(rowPosition, 1, QTableWidgetItem(str(self.tops[-1][1])))
         
 #added by C. Hooge    
     def loadtops(self):
@@ -95,12 +102,12 @@ class AppMainWindow(QMainWindow):
 #        self.tp_filename.setText(str(topsfile[0].replace('\\', '/')))
 #        print('here',topsfile.endswith('.csv'))
 
-        if (topsfile.endswith('.xlsx')):
-            topdata=pd.read_excel(topsfile, index_col=0);
-        if (topsfile.endswith('.csv')):
-            topdata=pd.read_csv(topsfile, index_col=0);
-#        uwi = self.w.las.header['Well']['UWI'].value;
-        well_tops=topdata[(topdata.index == self.w.las.header['Well']['UWI'].value)]
+        if topsfile.endswith('.xlsx'):
+            topdata = pd.read_excel(topsfile, index_col=0)
+        if topsfile.endswith('.csv'):
+            topdata = pd.read_csv(topsfile, index_col=0)
+#        uwi = self.w.las.header['Well']['UWI'].value
+        well_tops = topdata[(topdata.index == self.w.las.header['Well']['UWI'].value)]
         well_tops = well_tops.drop(['KB'], axis=1).squeeze().to_dict()
         
         for key, value in well_tops.items():
@@ -109,26 +116,26 @@ class AppMainWindow(QMainWindow):
 
             rowPosition = self.tbl_tops.rowCount()
             self.tbl_tops.insertRow(rowPosition)
-            self.tbl_tops.setItem(rowPosition , 0, QTableWidgetItem(self.tops[-1][0]))
-            self.tbl_tops.setItem(rowPosition , 1, QTableWidgetItem(str(self.tops[-1][1])))
+            self.tbl_tops.setItem(rowPosition, 0, QTableWidgetItem(self.tops[-1][0]))
+            self.tbl_tops.setItem(rowPosition, 1, QTableWidgetItem(str(self.tops[-1][1])))
 
     def calculate_elastic_logs(self):
         if 'Sonic' in self.las.curves:
 #            self.w.data["VelComp"] = 1000000/self.w.df()['DT'].values
-            self.las.append_curve("VelComp",1000000/self.las['Sonic'],unit="m/s")
+            self.las.append_curve("VelComp", 1000000/self.las['Sonic'], unit="m/s")
         if 'ShearSonic' in self.las.curves:
-            self.las.append_curve("VelShear",1000000/self.las['ShearSonic'],unit="m/s")
+            self.las.append_curve("VelShear", 1000000/self.las['ShearSonic'], unit="m/s")
 #            self.w.data["VelShear"]= 1000000/self.w.df()['DTS'].values
         
-        elastic=bruges.rockphysics.moduli_dict(self.las['VelComp'],self.las["VelShear"],self.las["Density"])
-        self.las.append_curve("BulkModulus",elastic["bulk"],unit="Pa")
-        self.las.append_curve("ImpedComp",elastic["imp"],unit="Kg/m3*m/s")
-        self.las.append_curve("Lambda",elastic["lam"],unit="Pa")
-        self.las.append_curve("Mu",elastic["mu"],unit="Pa")
-        self.las.append_curve("CompModulus",elastic["pmod"])
-        self.las.append_curve("PoissonRatio",elastic["pr"])
-        self.las.append_curve("YoungsModulus",elastic["youngs"],unit="Pa")
-        self.las.append_curve("VPVS",self.las["VelComp"]/self.las["VelShear"],unit="")
+        elastic = bruges.rockphysics.moduli_dict(self.las['VelComp'], self.las["VelShear"], self.las["Density"])
+        self.las.append_curve("BulkModulus", elastic["bulk"], unit="Pa")
+        self.las.append_curve("ImpedComp", elastic["imp"], unit="Kg/m3*m/s")
+        self.las.append_curve("Lambda", elastic["lam"], unit="Pa")
+        self.las.append_curve("Mu", elastic["mu"], unit="Pa")
+        self.las.append_curve("CompModulus", elastic["pmod"])
+        self.las.append_curve("PoissonRatio", elastic["pr"])
+        self.las.append_curve("YoungsModulus", elastic["youngs"], unit="Pa")
+        self.las.append_curve("VPVS", self.las["VelComp"]/self.las["VelShear"], unit="")
 
         
     def plottops(self):
@@ -166,14 +173,14 @@ class AppMainWindow(QMainWindow):
         self.gvLogs.clear()
 
     def loadlas(self):
-        AppMainWindow.getfilename(self);
+        self.getfilename()
 #        filename = self.le_filename.text()
         self.las = lasio.read(self.las_filename)
         
-        self.cbLogDisplay.clear();
+        self.cbLogDisplay.clear()
         for crv in self.las.curves:
             if crv.mnemonic != "DEPT":
-                name, mnemonic, min1, max1, reversed1, units,colour  = AppMainWindow.Find_Curve_Data(crv.mnemonic,curves_info);
+                name, mnemonic, min1, max1, reversed1, units,colour = AppMainWindow.Find_Curve_Data(crv.mnemonic,curves_info)
                 self.las.curves.minimum = min1
                 self.las.curves.maximum = max1
                 self.las.curves.reversed = reversed1
@@ -183,22 +190,21 @@ class AppMainWindow(QMainWindow):
                 if name is None:
                     name = crv.mnemonic
 
-                  
-                crv.mnemonic = name;
-                
-#                print('crv',crv.mnemonic,crv.unit)
-                df=self.las.df();
-                if (crv.unit.lower() == "ohm.m"):
+                crv.mnemonic = name
+
+#               print('crv',crv.mnemonic,crv.unit)
+                df = self.las.df()
+                if crv.unit.lower() == "ohm.m":
                     crv.unit = "ohm-m"
-                if (crv.unit.lower() == "us/ft"):
+                if crv.unit.lower() == "us/ft":
 #                    print("here1",crv.mnemonic)
-                    df[crv.mnemonic] = AppMainWindow.ConvertCurveToMetric(df[crv.mnemonic],conversion=3.281);
-#                    df[crv.mnemonic] = df[crv.mnemonic] * 3.281;
+                    df[crv.mnemonic] = AppMainWindow.ConvertCurveToMetric(df[crv.mnemonic],conversion=3.281)
+#                    df[crv.mnemonic] = df[crv.mnemonic] * 3.281
                     self.las.set_data_from_df(df)
-                if (crv.unit.lower() == "g/cm3" or crv.unit.lower() == "gm/cc"):
+                if crv.unit.lower() == "g/cm3" or crv.unit.lower() == "gm/cc":
 #                    print("here1",crv.mnemonic)
-                    df[crv.mnemonic] = AppMainWindow.ConvertCurveToMetric(df[crv.mnemonic],conversion=1000);
-#                    df[crv.mnemonic] = df[crv.mnemonic] * 1000;
+                    df[crv.mnemonic] = AppMainWindow.ConvertCurveToMetric(df[crv.mnemonic], conversion=1000)
+#                    df[crv.mnemonic] = df[crv.mnemonic] * 1000
                     self.las.set_data_from_df(df)
 
 #            self.cb_plot1.addItem(name)
@@ -215,19 +221,18 @@ class AppMainWindow(QMainWindow):
 #            print(c['name'],c['curves'])
             self.cbLogDisplay.addItem(c['name'])
 
-        AppMainWindow.calculate_elastic_logs(self);
+        self.calculate_elastic_logs()
 
         print(self.las.df().describe())
         
         self.w = Well.from_lasio(self.las)
 #        mainWnd.setWindowTitle("UWI: " + self.w.las.header['Well']['UWI'].value)
-        mainWnd.setWindowTitle(mainWnd.windowTitle() + "   File: " + self.las_filename +  "   UWI: " + self.w.las.header['Well']['UWI'].value)
+        mainWnd.setWindowTitle(mainWnd.windowTitle() + "   File: " + self.las_filename + "   UWI: " + self.w.las.header['Well']['UWI'].value)
 
     def plotlasOLD(self):
         y = self.w.survey_basis()
-
         x = self.w.data[self.w.df().columns[self.cb_plot1.currentIndex()]]
-#        name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(self.w.df().columns[self.cb_plot1.currentIndex()],curves_info);
+#        name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(self.w.df().columns[self.cb_plot1.currentIndex()],curves_info)
 
         self.gvPlot1.clear()
         self.gvPlot1.plot(x, y, pen=(1, 4))
@@ -275,23 +280,22 @@ class AppMainWindow(QMainWindow):
 #        print('plottedlogs',plottedlogs[0]['curves'])
 
         y = self.w.survey_basis()
-        
-#        print(self.w.df().describe())
 
-        i=0
+        i = 0
         for cv in plottedlogs[0]['curves']:
             plt = self.gvLogs.addPlot(name="Logs" + str(i))
-            self.plots.append(plt);
-
-            if (type(cv) == list):
-                title=cv[0]
+            self.plots.append(plt)
+            if type(cv) == list:
+                title = cv[0]
                 for c in cv:
-                    name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(c,curves_info,search='name');
+                    name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(c, curves_info,
+                                                                                                        search='name')
                     x = self.w.df()[c].values
                     plt.plot(x, y,pen=QtGui.QColor(colour))
             else:
-                name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(cv,curves_info,search='name');
-                title=cv
+                name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(cv, curves_info,
+                                                                                                    search='name')
+                title = cv
                 x = self.w.df()[cv].values
                 plt.plot(x, y,pen=QtGui.QColor(colour))
            
@@ -306,8 +310,8 @@ class AppMainWindow(QMainWindow):
             i=i+1
             
         plt_roi = self.gvLogs.addPlot(name="ROI")
-#        self.plots.append([i, plt_roi]);
-        self.plots.append(plt_roi);
+#        self.plots.append([i, plt_roi])
+        self.plots.append(plt_roi)
 
         plt_roi.invertY(True)
         plt_roi.setTitle("ZOI")
@@ -378,24 +382,23 @@ class AppMainWindow(QMainWindow):
         xfit = [min(x[idx]), max(x[idx])]
         yfit = [self.trendline_slope*xx + self.trendline_intercept for xx in xfit]
         self.scatter.plot(xfit, yfit, pen='r')
-        self.updateSliders();
+        self.updateSliders()
         
         
     def updateSliders(self):
-#        self.hzScrollBar_slope.setMinimum(self.trendline_slope*0.1);
-#        self.hzScrollBar_slope.setMaximum(self.trendline_slope*1.1);
-#        self.hzScrollBar_slope.setValue(self.trendline_slope);
-#        self.hzScrollBar_intercept.setMinimum(self.trendline_intercept*0.1);
-#        self.hzScrollBar_intercept.setMaximum(self.trendline_intercept*1.1);
-#        self.hzScrollBar_intercept.setValue(self.trendline_intercept);
+#        self.hzScrollBar_slope.setMinimum(self.trendline_slope*0.1)
+#        self.hzScrollBar_slope.setMaximum(self.trendline_slope*1.1)
+#        self.hzScrollBar_slope.setValue(self.trendline_slope)
+#        self.hzScrollBar_intercept.setMinimum(self.trendline_intercept*0.1)
+#        self.hzScrollBar_intercept.setMaximum(self.trendline_intercept*1.1)
+#        self.hzScrollBar_intercept.setValue(self.trendline_intercept)
+        self.hzSlider_slope.setMinimum(self.trendline_slope*0.1)
+        self.hzSlider_slope.setMaximum(self.trendline_slope*1.9)
+        self.hzSlider_slope.setValue(self.trendline_slope)
 
-        self.hzSlider_slope.setMinimum(self.trendline_slope*0.1);
-        self.hzSlider_slope.setMaximum(self.trendline_slope*1.9);
-        self.hzSlider_slope.setValue(self.trendline_slope);
-
-        self.hzSlider_intercept.setMinimum(self.trendline_intercept*0.1);
-        self.hzSlider_intercept.setMaximum(self.trendline_intercept*1.9);
-        self.hzSlider_intercept.setValue(self.trendline_intercept);
+        self.hzSlider_intercept.setMinimum(self.trendline_intercept*0.1)
+        self.hzSlider_intercept.setMaximum(self.trendline_intercept*1.9)
+        self.hzSlider_intercept.setValue(self.trendline_intercept)
         print('slope',self.hzSlider_slope.minimum(),self.hzSlider_slope.maximum())
         print('intercept',self.hzSlider_intercept.minimum(),self.hzSlider_intercept.maximum())
         print('intercept',self.trendline_intercept*0.1,self.trendline_intercept*1.9)
@@ -412,7 +415,7 @@ class AppMainWindow(QMainWindow):
 
 #added by C. Hooge    
     def CheckMnemonic(crv,lascrvs,curves_info):
-        orig_mn = crv.mnemonic;
+        orig_mn = crv.mnemonic
         pos = [0]
         if crv.mnemonic != "DEPT":
             name,mnemonic = AppMainWindow.Find_Curve_Data(crv.mnemonic,curves_info)
@@ -424,9 +427,9 @@ class AppMainWindow(QMainWindow):
         
 #            print("hereA",name,orig_mn,pos,len(pos),(name in lascrvs))
                        
-                if (mnemonic is not None):
-                    if (name in lascrvs):
-                        if (len(pos) > 0):
+                if mnemonic is not None:
+                    if name in lascrvs:
+                        if len(pos) > 0:
                             crv.mnemonic = name + "_" + str(pos[0])
                         else:
                             crv.mnemonic = name + "_0"
@@ -445,8 +448,8 @@ class AppMainWindow(QMainWindow):
         return crv
 
     def Find_Curve_Data(crv,curves_info,search='mnemonic'):
-        if (search == 'mnemonic'):
-            txt ='Curve[Mnemonic="' + crv + '"]'
+        if search == 'mnemonic':
+            txt = 'Curve[Mnemonic="' + crv + '"]'
             txt_alias = "Curve/Aliases[Name='" + crv + "']"
         if (search == 'name'):
 #            txt ='Curve[Name="' + crv + '"]'
@@ -456,33 +459,33 @@ class AppMainWindow(QMainWindow):
         crv_fnd = curves_info.find(txt)
         print('search',search,crv,txt,crv_fnd)
 
-        name=None
-        mnemonic=None
-        min1=None
-        max1=None
-        reversed1=None
-        units=None
-        colour=None
+        name = None
+        mnemonic = None
+        min1 = None
+        max1 = None
+        reversed1 = None
+        units = None
+        colour = None
         if crv_fnd is not None:
-            name=crv_fnd.attrib['name']
+            name = crv_fnd.attrib['name']
             mnemonic = crv_fnd.findtext('Mnemonic')
-            min1=crv_fnd.findtext('Minimum')
-            max1=crv_fnd.findtext('Maximum')
-            reversed1=crv_fnd.findtext('Reversed')
-            units=crv_fnd.findtext('Units')
-            colour=crv_fnd.findtext('Colour')
+            min1 = crv_fnd.findtext('Minimum')
+            max1 = crv_fnd.findtext('Maximum')
+            reversed1 = crv_fnd.findtext('Reversed')
+            units = crv_fnd.findtext('Units')
+            colour = crv_fnd.findtext('Colour')
         else:
             crv_fnd = curves_info.find(txt_alias)        
             if crv_fnd is not None:
-                name=crv_fnd.getparent().attrib['name']
-                mnemonic=crv_fnd.getparent().findtext('Mnemonic')
-                min1=crv_fnd.getparent().findtext('Minimum')
-                max1=crv_fnd.getparent().findtext('Maximum')
-                reversed1=crv_fnd.getparent().findtext('Reversed')
-                units=crv_fnd.getparent().findtext('Units')
-                colour=crv_fnd.getparent().findtext('Colour')
+                name = crv_fnd.getparent().attrib['name']
+                mnemonic = crv_fnd.getparent().findtext('Mnemonic')
+                min1 = crv_fnd.getparent().findtext('Minimum')
+                max1 = crv_fnd.getparent().findtext('Maximum')
+                reversed1 = crv_fnd.getparent().findtext('Reversed')
+                units = crv_fnd.getparent().findtext('Units')
+                colour = crv_fnd.getparent().findtext('Colour')
             
-        return  name, mnemonic, min1, max1, reversed1,units,colour
+        return name, mnemonic, min1, max1, reversed1, units, colour
     
     def ConvertCurveToMetric(crv_data,conversion=1):
         return crv_data * conversion
