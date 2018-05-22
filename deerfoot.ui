@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1231</width>
-    <height>877</height>
+    <height>878</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -146,9 +146,6 @@
             </property>
            </widget>
           </item>
-          <item row="13" column="0" colspan="3">
-           <widget class="QListWidget" name="tbl_tops"/>
-          </item>
           <item row="15" column="1" colspan="2">
            <widget class="QLineEdit" name="le_topname"/>
           </item>
@@ -165,8 +162,15 @@
             </property>
            </spacer>
           </item>
-          <item row="21" column="0" colspan="3">
-           <widget class="QTableWidget" name="tbl_tops2">
+          <item row="19" column="0">
+           <widget class="QPushButton" name="btn_loadtops">
+            <property name="text">
+             <string>Load Tops from File</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="0" colspan="3">
+           <widget class="QTableWidget" name="tbl_tops">
             <property name="minimumSize">
              <size>
               <width>182</width>
@@ -188,12 +192,8 @@
             </column>
            </widget>
           </item>
-          <item row="19" column="0">
-           <widget class="QPushButton" name="btn_loadtops">
-            <property name="text">
-             <string>Load Tops from File</string>
-            </property>
-           </widget>
+          <item row="20" column="0" colspan="3">
+           <widget class="QComboBox" name="cbLogDisplay"/>
           </item>
          </layout>
         </widget>
@@ -201,8 +201,8 @@
        <item>
         <widget class="QGroupBox" name="groupBox_8">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-           <horstretch>0</horstretch>
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>100</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -215,63 +215,91 @@
          <property name="title">
           <string>Logs</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="3">
-           <widget class="PlotWidget" name="gvPlot3">
-            <property name="maximumSize">
-             <size>
-              <width>150</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="PlotWidget" name="gvPlot1">
-            <property name="maximumSize">
-             <size>
-              <width>150</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="PlotWidget" name="gvPlot2">
-            <property name="maximumSize">
-             <size>
-              <width>150</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
-           <widget class="PlotWidget" name="gvPlot4">
-            <property name="maximumSize">
-             <size>
-              <width>150</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="PlotWidget" name="gvPlotzoi">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="PlotWidget" name="gvPlot3">
+          <property name="geometry">
+           <rect>
+            <x>295</x>
+            <y>23</y>
+            <width>98</width>
+            <height>765</height>
+           </rect>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="PlotWidget" name="gvPlot1">
+          <property name="geometry">
+           <rect>
+            <x>87</x>
+            <y>23</y>
+            <width>98</width>
+            <height>765</height>
+           </rect>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="PlotWidget" name="gvPlot2">
+          <property name="geometry">
+           <rect>
+            <x>191</x>
+            <y>23</y>
+            <width>98</width>
+            <height>765</height>
+           </rect>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="PlotWidget" name="gvPlot4">
+          <property name="geometry">
+           <rect>
+            <x>399</x>
+            <y>23</y>
+            <width>98</width>
+            <height>765</height>
+           </rect>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="PlotWidget" name="gvPlotzoi">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>23</y>
+            <width>71</width>
+            <height>765</height>
+           </rect>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
          <zorder>gvPlot4</zorder>
          <zorder>gvPlot2</zorder>
-         <zorder>gvPlot1</zorder>
          <zorder>gvPlot3</zorder>
          <zorder>gvPlotzoi</zorder>
+         <zorder>gvPlot1</zorder>
         </widget>
        </item>
        <item>
@@ -508,7 +536,6 @@
   <tabstop>le_topdepth</tabstop>
   <tabstop>btn_addtop</tabstop>
   <tabstop>btn_plottops</tabstop>
-  <tabstop>tbl_tops</tabstop>
  </tabstops>
  <resources/>
  <connections/>

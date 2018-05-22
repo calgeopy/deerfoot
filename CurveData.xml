@@ -1,0 +1,1339 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CurveParameters>
+  <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="CurveParameters">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="Curve">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:choice maxOccurs="unbounded">
+                  <xs:element name="APICode" type="xs:string" />
+                  <xs:element name="Mnemonic" type="xs:string" />
+                  <xs:element name="Units" type="xs:string" />
+                  <xs:element name="Minimum" type="xs:float" />
+                  <xs:element name="Maximum" type="xs:float" />
+                  <xs:element name="Reversed" type="xs:boolean" />
+                  <xs:element name="Format" type="xs:string" />
+                  <xs:element name="Type" type="xs:string" />
+                  <xs:element name="PlotGroup" type="xs:string" />
+                  <xs:element name="Colour" type="xs:string" />
+                  <xs:element name="Aliases" type="xs:string" />
+                </xs:choice>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Curve name ="Depth">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>Depth</Mnemonic>
+    <Units>m</Units>
+    <Minimum>0</Minimum>
+    <Maximum>10000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <Aliases>
+		<Name>DEPT</Name>
+		<Name>DEP</Name>
+		</Aliases>
+  </Curve>
+  <Curve name ="GammaRay">
+    <APICode> 0 310  1  1</APICode>
+    <Mnemonic>GR</Mnemonic>
+    <Units>API</Units>
+    <Minimum>0.</Minimum>
+    <Maximum>150.</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Gamma</PlotGroup>
+    <Colour>CornflowerBlue</Colour>
+    <Aliases><Name>GRS</Name>
+		<Name>GRZ</Name>
+		<Name>GRGM</Name>
+		<Name>GAM</Name>
+		<Name>GRLD</Name>
+		<Name>GRPD</Name>
+		<Name>GRGC</Name>
+		<Name>GRDS</Name>
+		<Name>HDR</Name>
+		<Name>DNGammaRay</Name>
+		<Name>GRN</Name>
+		<Name>GRDE</Name>
+		<Name>GRGS</Name>
+		<Name>GRD</Name>
+		<Name>GRDI</Name>
+		<Name>GRI</Name>
+		<Name>HGammaRay</Name>
+		<Name>GRLL</Name>
+		<Name>GR1</Name>
+		<Name>GR2</Name>
+		<Name>GRUG</Name>
+		<Name>GAMMA</Name>
+		<Name>GRSD</Name>
+		<Name>GR_STGC</Name>
+		<Name>GR_EDTC</Name>
+		</Aliases>
+  </Curve>
+  <Curve name ="GammaRayNormal">
+    <APICode> 0 000  1  1</APICode>
+    <Mnemonic>GR_NORM</Mnemonic>
+    <Units>API</Units>
+    <Minimum>0</Minimum>
+    <Maximum>150</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Gamma</PlotGroup>
+    <Colour>Red</Colour>
+    <Aliases><Name>GR_NORM_CDTT_HRMN</Name></Aliases>
+  </Curve>
+  <Curve name ="GammaRayFirstDeriv">
+    <APICode> 0 000  1  1</APICode>
+    <Mnemonic>GR_1D</Mnemonic>
+    <Units>API/M</Units>
+    <Minimum>-25</Minimum>
+    <Maximum>25</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Gamma</PlotGroup>
+    <Colour>DarkRed</Colour>
+    <Aliases>
+		<Name>GammaRay_1D</Name></Aliases>
+  </Curve>
+  <Curve name ="GammaRaySecondDeriv">
+    <APICode> 0 000  1  1</APICode>
+    <Mnemonic>GR_2D</Mnemonic>
+    <Units>API/M2</Units>
+    <Minimum>-25</Minimum>
+    <Maximum>25</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Gamma</PlotGroup>
+    <Colour>LightGreen</Colour>
+    <Aliases><Name>GammaRay_2D</Name></Aliases>
+  </Curve>
+  <Curve name ="Neutron">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>NEUT</Mnemonic>
+    <Units>API</Units>
+    <Minimum>0</Minimum>
+    <Maximum>150</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Gamma</PlotGroup>
+    <Colour>Green</Colour>
+    <Aliases>
+		<Name>NN</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="Density">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>RHOB</Mnemonic>
+    <Units>kg/m3</Units>
+    <Minimum>2000</Minimum>
+    <Maximum>3000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Density</PlotGroup>
+    <Colour>Blue</Colour>
+    <Aliases><Name>DEN</Name>
+		<Name>RHOZ</Name>
+		<Name>DNDN</Name>
+		<Name>RHOS</Name>
+		<Name>RHO8</Name>
+		<Name>RHOM</Name>
+		<Name>HRHOB</Name>
+		<Name>2RHB</Name>
+		<Name>ZDEN</Name>
+		<Name>RHOB_SLD</Name>
+		<Name>RHOZ[1]</Name></Aliases>
+  </Curve>
+  <Curve name ="DenCorr">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>DRHO</Mnemonic>
+    <Units>kg/m3</Units>
+    <Minimum>-250</Minimum>
+    <Maximum>250</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>LightGreen</Colour>
+    <Aliases><Name>DCOR</Name>
+		<Name>DC</Name>
+		<Name>HDRA</Name>
+		<Name>CORR</Name>
+		<Name>DRH</Name>
+		<Name>HDRHO</Name>
+		<Name>ZCOR</Name>
+		<Name>2DPRH</Name>
+		<Name>DECR</Name>
+		<Name>HZCOR</Name></Aliases>
+  </Curve>
+  <Curve name ="Sonic">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>DT</Mnemonic>
+    <Units>us/m</Units>
+    <Minimum>100</Minimum>
+    <Maximum>500</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Sonic</PlotGroup>
+    <Colour>Red</Colour>
+    <Aliases>
+		<Name>DTCM</Name>
+		<Name>DT24</Name>
+		<Name>DT34</Name>
+		<Name>DT35</Name>
+		<Name>DT4P</Name>
+		<Name>DTCO</Name>
+		<Name>HDT</Name>
+		<Name>ACCO</Name>
+		<Name>DTC1</Name>
+		<Name>CPSL</Name>
+		<Name>FTDC</Name>
+		<Name>AC</Name>
+		<Name>ACL</Name>
+		<Name>ACN</Name>
+		<Name>SON</Name>
+		<Name>DTP</Name>
+		<Name>DTC</Name>
+		<Name>DT24QS</Name>
+		<Name>DT24QI</Name>
+		<Name>DT24S</Name>
+		<Name>DTCA</Name>
+		<Name>DTCO_MFM</Name></Aliases>
+  </Curve>
+  <Curve name ="ShearSonic">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>DTS</Mnemonic>
+    <Units>us/m</Units>
+    <Minimum>300</Minimum>
+    <Maximum>500</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Sonic</PlotGroup>
+    <Colour>Green</Colour>
+    <Aliases><Name>DT4S</Name>
+		<Name>DT1</Name>
+		<Name>TS</Name>
+		<Name>DTSX</Name>
+		<Name>DTSY</Name>
+		<Name>ACSM</Name>
+		<Name>DTSM</Name>
+		<Name>DTSH_MFM</Name></Aliases>
+  </Curve>
+  <Curve name ="SelfPot">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>SP</Mnemonic>
+    <Units>mv</Units>
+    <Minimum>-100</Minimum>
+    <Maximum>100</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>SelfPot</PlotGroup>
+    <Colour>Orange</Colour>
+    <Aliases><Name>SelfPotCG</Name>
+		<Name>SelfPotD</Name>
+		<Name>SelfPotDF</Name>
+		<Name>HSelfPot</Name>
+		<Name>IRSelfPot</Name>
+		<Name>IDSelfPot</Name>
+		<Name>SelfPotCG</Name>
+		<Name>SelfPotH</Name>
+		<Name>SelfPotC</Name>
+		<Name>SelfPotL</Name>
+		<Name>SelfPotDL</Name></Aliases>
+  </Curve>
+  <Curve name ="DeepRes">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>ILD</Mnemonic>
+    <Units>ohm-m</Units>
+    <Minimum>.1</Minimum>
+    <Maximum>2000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Resistivity</PlotGroup>
+    <Colour>Red</Colour>
+    <Aliases>
+		<Name>RILD</Name>
+		<Name>AHF9</Name>
+		<Name>AHF90</Name>
+		<Name>AF9</Name>
+		<Name>AF90</Name>
+		<Name>AHT90</Name>
+		<Name>AT90</Name>
+		<Name>IDPH</Name>
+		<Name>RIPD</Name>
+		<Name>IDER</Name>
+		<Name>DVR1</Name>
+		<Name>DVR2</Name>
+		<Name>DVR4</Name>
+		<Name>AHF6</Name>
+		<Name>AHF60</Name>
+		<Name>AF6</Name>
+		<Name>AF60</Name>
+		<Name>AO90</Name>
+		<Name>AHT60</Name>
+		<Name>AT60</Name>
+		<Name>AO60</Name>
+		<Name>AE60</Name>
+		<Name>AHO60</Name>
+		<Name>IL</Name>
+		<Name>RLL</Name>
+		<Name>HILD</Name>
+		<Name>M1R9</Name>
+		<Name>M2R9</Name>
+		<Name>LAT</Name>
+		<Name>LN</Name>
+		<Name>RLA5</Name>
+		<Name>LLD</Name>
+		<Name>LN64</Name>
+		<Name>HLLD</Name>
+		<Name>AHO90</Name>
+		<Name>AE90</Name>
+		<Name>AIT6</Name>
+		<Name>DSER</Name>
+		<Name>M2RX</Name>
+		<Name>ILD2</Name>
+		<Name>DVR2</Name>
+		<Name>RD</Name>
+		<Name>LL16</Name>
+		<Name>LL</Name>
+		<Name>LL3</Name>
+		<Name>LL7</Name>
+		<Name>RT</Name>
+		<Name>RES</Name>
+		<Name>R60O</Name>
+		<Name>ID</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="MedRes">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>ILM</Mnemonic>
+    <Units>ohm-m</Units>
+    <Minimum>.1</Minimum>
+    <Maximum>2000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Resistivity</PlotGroup>
+    <Colour>Green</Colour>
+    <Aliases>
+		<Name>MVR1</Name>
+		<Name>MVR2</Name>
+		<Name>MVR4</Name>
+		<Name>RILM</Name>
+		<Name>R40O</Name>
+		<Name>IM</Name>
+		<Name>IMPH</Name>
+		<Name>RIPM</Name>
+		<Name>IMER</Name>
+		<Name>HILM</Name>
+		<Name>M1R6</Name>
+		<Name>M2R6</Name>
+		<Name>LL7</Name>
+		<Name>RLA4</Name>
+		<Name>AIT3</Name>
+		<Name>MSER</Name>
+		<Name>ILM2</Name>
+		<Name>MVR2</Name>
+		<Name>AHF3</Name>
+		<Name>AF3</Name>
+		<Name>AF30</Name>
+		<Name>AHF30</Name>
+		<Name>AHT30</Name>
+		<Name>AT30</Name>
+		<Name>AHO30</Name>
+		<Name>AO30</Name>
+		<Name>AE30</Name>
+		<Name>LLS</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="ShallowRes">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>ILS</Mnemonic>
+    <Units>ohm-m</Units>
+    <Minimum>.1</Minimum>
+    <Maximum>2000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Resistivity</PlotGroup>
+    <Colour>LightBlue</Colour>
+    <Aliases><Name>RTAO</Name>
+		<Name>MFR</Name>
+		<Name>RLLA</Name>
+		<Name>LL3</Name>
+		<Name>RSG</Name>
+		<Name>AF10</Name>
+		<Name>AHF1</Name>
+		<Name>AHF10</Name>
+		<Name>AHT10</Name>
+		<Name>AT10</Name>
+		<Name>AHF2</Name>
+		<Name>AHF20</Name>
+		<Name>AF20</Name>
+		<Name>AHT20</Name>
+		<Name>AT20</Name>
+		<Name>AO10</Name>
+		<Name>AO20</Name>
+		<Name>M1R1</Name>
+		<Name>M2R1</Name>
+		<Name>M1R2</Name>
+		<Name>M2R2</Name>
+		<Name>M1R3</Name>
+		<Name>M2R3</Name>
+		<Name>SN</Name>
+		<Name>RLA3</Name>
+		<Name>LLS</Name>
+		<Name>HLLS</Name>
+		<Name>SN16</Name>
+		<Name>VEC0</Name>
+		<Name>AHO10</Name>
+		<Name>AHO20</Name>
+		<Name>RFOC</Name>
+		<Name>RLA1</Name>
+		<Name>RLA2</Name>
+		<Name>RLA3</Name>
+		<Name>AE10</Name>
+		<Name>AE20</Name>
+		<Name>AIT2</Name>
+		<Name>ILS1</Name>
+		<Name>RILS</Name>
+		<Name>RS</Name>
+		<Name>LL09</Name>
+		<Name>LL8</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="FocusedRes">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>SFL</Mnemonic>
+    <Units>ohm-m</Units>
+    <Minimum>.1</Minimum>
+    <Maximum>2000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Resistivity</PlotGroup>
+    <Colour>LightBlue</Colour>
+    <Aliases>
+		<Name>SFLU</Name>
+		<Name>SFLA</Name>
+		<Name>FEFE</Name>
+		<Name>SFLR</Name>
+		<Name>FEF</Name>
+		<Name>FE</Name>
+		<Name>RSFE</Name>
+		<Name>FEFC</Name>
+		<Name>RSFL</Name>
+		<Name>PSHG</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="Resistivity_Invaded">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>RXOZ</Mnemonic>
+    <Units>ohm-m</Units>
+    <Minimum>.1</Minimum>
+    <Maximum>2000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>RXOZ</Name>
+		<Name>ATRX</Name>
+		<Name>AHTRX</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="Resistivity_Mud">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>AHMF</Mnemonic>
+    <Units>ohm-m</Units>
+    <Minimum>.1</Minimum>
+    <Maximum>2000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name></Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="MicroNormal">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>MNOR</Mnemonic>
+    <Units>ohm-m</Units>
+    <Minimum>.1</Minimum>
+    <Maximum>2000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Resistivity</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>NOR</Name>
+		<Name>HMNOR</Name>
+		<Name>HMNO</Name>
+		<Name>MNRL</Name>
+		<Name>BMNO</Name>
+		<Name>RNML</Name></Aliases>
+  </Curve>
+  <Curve name ="MicroInverse">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>MINV</Mnemonic>
+    <Units>ohm-m</Units>
+    <Minimum>.1</Minimum>
+    <Maximum>2000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Resistivity</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>INV</Name>
+		<Name>HMINV</Name>
+		<Name>HMIN</Name>
+		<Name>BMIN</Name>
+		<Name>RLML</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="DeepCond">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>CILD</Mnemonic>
+    <Units>ohm-m</Units>
+    <Minimum>.1</Minimum>
+    <Maximum>2000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Resistivity</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>AT9C</Name>
+		<Name>ATCO</Name>
+		<Name>DVC2</Name>
+		<Name>AHFCO90</Name>
+		<Name>AOCO</Name>
+		<Name>CIDP</Name>
+		<Name>AFCO90</Name>
+		<Name>AHTCO90</Name>
+		<Name>AO9C</Name>
+		<Name>AHOCO90</Name>
+		<Name>AHFCO[5]</Name>
+		<Name>AF9C</Name>
+		<Name>COND</Name>
+		<Name>DCV1</Name>
+		<Name>DCV2</Name>
+		<Name>DCV4</Name>
+		<Name>CIPD</Name>
+		<Name>ATCO90</Name>
+		<Name>DVC2</Name>
+		<Name>DSEC</Name>
+		<Name>AFCO</Name></Aliases>
+  </Curve>
+  <Curve name ="MedCond">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>CILM</Mnemonic>
+    <Units>ohm-m</Units>
+    <Minimum>.1</Minimum>
+    <Maximum>2000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Resistivity</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>AHFCO60</Name>
+		<Name>AHTCO60</Name>
+		<Name>AO6C</Name>
+		<Name>AT6C</Name>
+		<Name>AHOCO60</Name>
+		<Name>AF6C</Name>
+		<Name>CIPM</Name>
+		<Name>AFCO60</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="ShallowCond">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>CILS</Mnemonic>
+    <Units>ohm-m</Units>
+    <Minimum>.1</Minimum>
+    <Maximum>2000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Resistivity</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>CSFL</Name>
+		<Name>CIL</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="PhotoEffect">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>PE</Mnemonic>
+    <Units></Units>
+    <Minimum>0</Minimum>
+    <Maximum>10</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>PDPE</Name>
+		<Name>PEF</Name>
+		<Name>PEFZ</Name>
+		<Name>PEDN</Name>
+		<Name>LSelfPotE</Name>
+		<Name>PEF8</Name>
+		<Name>HPEF</Name>
+		<Name>PEFL</Name>
+		<Name>2PEF</Name>
+		<Name>PEFSA</Name>
+		<Name>PEF_SLDT</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="Temp">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>TEMP</Mnemonic>
+    <Units>degC</Units>
+    <Minimum>1</Minimum>
+    <Maximum>500</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>TEM1</Name>
+		<Name>CGXT</Name>
+		<Name>BHTR</Name>
+		<Name>TEXD</Name>
+		<Name>BHT</Name>
+		<Name>HTEM</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="DenPorGeneric">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>DPHI</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.45</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>Blue</Colour>
+    <Aliases>
+		<Name>DPOR</Name>
+		<Name>DPHZ</Name>
+		<Name>PORZ</Name>
+		<Name>DPHI_SLD</Name>
+		<Name>HDPHI</Name>
+		<Name>DPHI_OTH</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="DenPorSand">
+    <APICode>00 890 12  1</APICode>
+    <Mnemonic>DPSS</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.45</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>Blue</Colour>
+    <Aliases>
+		<Name>DPRS</Name>
+		<Name>DPHI_S</Name>
+		<Name>DPHI_SAN</Name>
+		<Name>DPOR_SAN</Name>
+		<Name>PDS</Name>
+		<Name>2DPS</Name>
+		<Name>DNDPS</Name>
+		<Name>DPRS</Name>
+		<Name>PORS</Name>
+		<Name>PORZS</Name>
+		<Name>PORZSS</Name>
+		<Name>PZSS</Name>
+		<Name>DPHZ_S</Name>
+		<Name>HDPRS</Name>
+		<Name>DEPO</Name>
+		<Name>DPHZSS</Name>
+		<Name>PZS</Name>
+		<Name>HDPHI_SS</Name>
+		<Name>DPSS_SAN</Name>
+		<Name>DPLS_SAN</Name>
+		<Name>DPHS</Name></Aliases>
+  </Curve>
+  <Curve name ="DenPorLime">
+    <APICode>00 890 10  1</APICode>
+    <Mnemonic>DPLS</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.45</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>Blue</Colour>
+    <Aliases>
+		<Name>DPHI_L</Name>
+		<Name>DPHI_LIM</Name>
+		<Name>DPOR_LIM</Name>
+		<Name>PDL</Name>
+		<Name>PORL</Name>
+		<Name>2DPH</Name>
+		<Name>DNDPL</Name>
+		<Name>DPRL</Name>
+		<Name>PORZL</Name>
+		<Name>PORZLS</Name>
+		<Name>PZLS</Name>
+		<Name>DPHZ_L</Name>
+		<Name>DPHZLS</Name>
+		<Name>PZL</Name>
+		<Name>HDPHI_LS</Name>
+		<Name>DPSS_LIM</Name>
+		<Name>DPLS_LIM</Name>
+		<Name>DLIM</Name>
+		<Name>DPHL</Name></Aliases>
+  </Curve>
+  <Curve name ="DenPorDol">
+    <APICode>00 890 11  1</APICode>
+    <Mnemonic>DPDL</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.45</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>Blue</Colour>
+    <Aliases>
+		<Name>DPHI_D</Name>
+		<Name>DPHI_DOL</Name>
+		<Name>DPOR_DOL</Name>
+		<Name>PDD</Name>
+		<Name>PORD</Name>
+		<Name>2DPD</Name>
+		<Name>DPRD</Name>
+		<Name>PDD</Name>
+		<Name>HDPHI</Name>
+		<Name>PORZD</Name>
+		<Name>PORZDL</Name>
+		<Name>PZDL</Name>
+		<Name>DPHZ_D</Name>
+		<Name>DPHZDL</Name>
+		<Name>PZD</Name>
+		<Name>HDPHI_DL</Name>
+		<Name>DPSS_DOL</Name>
+		<Name>DPLS_DOL</Name>
+		<Name>DPHD</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="NeutPorGeneric">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>NPHI</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.45</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>Green</Colour>
+    <Aliases><Name>NPOR</Name>
+		<Name>TNPH</Name>
+		<Name>HTNP</Name>
+		<Name>HNPO</Name>
+		<Name>CNC</Name>
+		<Name>HNPHI</Name>
+		<Name>NPHI_OTH</Name></Aliases>
+  </Curve>
+  <Curve name ="NeutPorSand">
+    <APICode>00 890  3  1</APICode>
+    <Mnemonic>NPSS</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.45</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>Green</Colour>
+    <Aliases><Name>NPRS</Name>
+		<Name>NPHI_S</Name>
+		<Name>NPHI_SAN</Name>
+		<Name>TNPH_SAN</Name>
+		<Name>NPOR_SAN</Name>
+		<Name>POSS</Name>
+		<Name>CNS</Name>
+		<Name>POS</Name>
+		<Name>NPOR_S</Name>
+		<Name>CNCSS</Name>
+		<Name>CNCS</Name>
+		<Name>CNSS</Name>
+		<Name>HNPRS</Name>
+		<Name>RPOR</Name>
+		<Name>NPORSS</Name>
+		<Name>TNPH_S</Name>
+		<Name>PHXNDSS</Name>
+		<Name>CNSS</Name>
+		<Name>NSDB</Name>
+		<Name>HNPHI_SS</Name>
+		<Name>NSBC</Name>
+		<Name>APSC</Name>
+		<Name>NPSS_SAN</Name>
+		<Name>NPHS</Name></Aliases>
+  </Curve>
+  <Curve name ="NeutPorLime">
+    <APICode>00 890  1  1</APICode>
+    <Mnemonic>NPLS</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.45</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>Green</Colour>
+    <Aliases><Name>NPHI_L</Name>
+		<Name>NPHI_LIM</Name>
+		<Name>TNPH_LIM</Name>
+		<Name>NPOR_LIM</Name>
+		<Name>POSL</Name>
+		<Name>CNL</Name>
+		<Name>POL</Name>
+		<Name>NPRL</Name>
+		<Name>CNLS</Name>
+		<Name>NPOR_L</Name>
+		<Name>CNCLS</Name>
+		<Name>CNCL</Name>
+		<Name>NPORLS</Name>
+		<Name>TNPH_L</Name>
+		<Name>PHXNDLS</Name>
+		<Name>CNCL</Name>
+		<Name>NLDB</Name>
+		<Name>HNPHI_LS</Name>
+		<Name>NLBC</Name>
+		<Name>APLC</Name>
+		<Name>NPSS_LIM</Name>
+		<Name>NPHL</Name></Aliases>
+  </Curve>
+  <Curve name ="NeutPorDol">
+    <APICode>00 890  2  1</APICode>
+    <Mnemonic>NPDL</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.45</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>Green</Colour>
+    <Aliases><Name>NPHI_D</Name>
+		<Name>NPHI_DOL</Name>
+		<Name>TNPH_DOL</Name>
+		<Name>NPOR_DOL</Name>
+		<Name>POSD</Name>
+		<Name>CND</Name>
+		<Name>NPRD</Name>
+		<Name>POD</Name>
+		<Name>HNPHI</Name>
+		<Name>NPOR_D</Name>
+		<Name>CNCDL</Name>
+		<Name>CNCD</Name>
+		<Name>NPDS</Name>
+		<Name>CNDL</Name>
+		<Name>NPORDL</Name>
+		<Name>TNPH_D</Name>
+		<Name>PHXNDDO</Name>
+		<Name>CNCD</Name>
+		<Name>NDDB</Name>
+		<Name>HNPHI_DL</Name>
+		<Name>NDBC</Name>
+		<Name>APDC</Name>
+		<Name>NPSS_DOL</Name>
+		<Name>NPHD</Name></Aliases>
+  </Curve>
+  <Curve name ="SonicPorSand">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>SelfPotSS</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.45</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Aliases><Name>RPSS</Name>
+		<Name>SelfPotSS_Calc</Name></Aliases>
+    <Colour>White</Colour>
+  </Curve>
+  <Curve name ="SonicPorLime">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>SelfPotLS</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.45</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name>RPHI</Name>
+		<Name>SelfPotHI</Name>
+		<Name>RPLS</Name>
+		<Name>SelfPotLS_Calc</Name></Aliases>
+  </Curve>
+  <Curve name ="SonicPorDol">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>SelfPotDL</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.45</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Porosity</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name>RPDL</Name>
+		<Name>SelfPotDL_Calc</Name></Aliases>
+  </Curve>
+  <Curve name ="CaliperX">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>CALX</Mnemonic>
+    <Units>mm</Units>
+    <Minimum>125</Minimum>
+    <Maximum>375</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Gamma</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name>CAL1</Name>
+		<Name>CALI</Name>
+		<Name>CLDC</Name>
+		<Name>CAXZ</Name>
+		<Name>C1</Name>
+		<Name>CAX</Name>
+		<Name>CALS</Name>
+		<Name>CALD</Name>
+		<Name>C13</Name>
+		<Name>C13M</Name>
+		<Name>CALA</Name>
+		<Name>CALT</Name>
+		<Name>CAPD</Name>
+		<Name>LCAL</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="CaliperY">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>CALY</Mnemonic>
+    <Units>mm</Units>
+    <Minimum>125</Minimum>
+    <Maximum>375</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Gamma</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>CAL2</Name>
+		<Name>CLYC</Name>
+		<Name>CAYZ</Name>
+		<Name>C2</Name>
+		<Name>CAY</Name>
+		<Name>CALN</Name>
+		<Name>CAYD</Name>
+		<Name>C24</Name>
+		<Name>C24M</Name>
+		<Name>CALZ</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="Tension">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>TENS</Mnemonic>
+    <Units>lbs</Units>
+    <Minimum>0</Minimum>
+    <Maximum>15000</Maximum>
+    <Reversed>true</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Gamma</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>TEN</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="PoissonRatio">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>POISSON</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>0</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>POIS</Name>
+		<Name>PR</Name>
+	</Aliases>
+  </Curve>
+  <Curve name ="VelComp">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>PVEL</Mnemonic>
+    <Units>m/s</Units>
+    <Minimum>2000</Minimum>
+    <Maximum>7000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>Red</Colour>
+    <Aliases>
+		<Name>VEL</Name>
+		<Name>PVel</Name></Aliases>
+  </Curve>
+  <Curve name ="VelShear">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>SVEL</Mnemonic>
+    <Units>m/s</Units>
+    <Minimum>2000</Minimum>
+    <Maximum>7000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases>
+		<Name>SVel</Name>
+		</Aliases>
+  </Curve>
+  <Curve name ="VPVS">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>SCRA</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>0</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="ImpedComp">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>PImp</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>4000000</Minimum>
+    <Maximum>20000000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="ImpedShear">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>SImp</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>4000000</Minimum>
+    <Maximum>21000000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="CompModulus">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>PMOD</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>0</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="YoungsModulus">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>YOUNGS</Mnemonic>
+    <Units>PA</Units>
+    <Minimum>0</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="BulkModulus">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>BULK</Mnemonic>
+    <Units>Pa</Units>
+    <Minimum>0</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="Lambda">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>LAM</Mnemonic>
+    <Units>Pa</Units>
+    <Minimum>0</Minimum>
+    <Maximum>1000000000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>Red</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="Mu">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>MU</Mnemonic>
+    <Units>Pa</Units>
+    <Minimum>0</Minimum>
+    <Maximum>1000000000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>DarkGreen</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="ReflectionCoefficient">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>ReflCoeff</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-0.1</Minimum>
+    <Maximum>0.1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Acoustic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="TwoWayTime">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>TWT</Mnemonic>
+    <Units>ms</Units>
+    <Minimum>0</Minimum>
+    <Maximum>3</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Synthetic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="TimeSeries">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>TimeSeries</Mnemonic>
+    <Units>ms</Units>
+    <Minimum>-1</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Synthetic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="SyntheticTrace">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>Synthetic</Mnemonic>
+    <Units></Units>
+    <Minimum>-1</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Synthetic</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="WaterSaturation">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>Sw</Mnemonic>
+    <Units></Units>
+    <Minimum>0</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Petrophysics</PlotGroup>
+    <Colour>Blue</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="OilSaturation">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>So</Mnemonic>
+    <Units></Units>
+    <Minimum>0</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Petrophysics</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name>Soil</Name></Aliases>
+  </Curve>
+  <Curve name ="HPV">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>HPV</Mnemonic>
+    <Units>m2</Units>
+    <Minimum>0</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Petrophysics</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="Phi_h">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>PHI_H</Mnemonic>
+    <Units>m</Units>
+    <Minimum>-1</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Petrophysics-PHIH</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name>phi_h</Name></Aliases>
+  </Curve>
+  <Curve name ="Pay">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>PAY</Mnemonic>
+    <Units>M</Units>
+    <Minimum>0</Minimum>
+    <Maximum>1</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Petrophysics-Pay</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name>PAY35</Name>
+		<Name>PAY40</Name>
+		<Name>PAY45</Name>
+		<Name>PAY50</Name>
+		<Name>PAY55</Name>
+		<Name>PAY60</Name>
+		<Name>PAY65</Name>
+		<Name>PAY70</Name></Aliases>
+  </Curve>
+  <Curve name ="EffectivePorosity">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>PhiEff</Mnemonic>
+    <Units>fract</Units>
+    <Minimum>-.15</Minimum>
+    <Maximum>.85</Maximum>
+    <Reversed>true</Reversed>
+    <Format>F2</Format>
+    <Type>Linear</Type>
+    <PlotGroup>Petrophysics-Por</PlotGroup>
+    <Colour>Red</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="Permeability_kmax">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>Perm_kmax</Mnemonic>
+    <Units>md</Units>
+    <Minimum>0.1</Minimum>
+    <Maximum>10000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Permeability</PlotGroup>
+    <Colour>Green</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="Permeability_k90">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>Perm_k90</Mnemonic>
+    <Units>md</Units>
+    <Minimum>0.1</Minimum>
+    <Maximum>10000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Permeability</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="Permeability_kvert">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>Perm_kvert</Mnemonic>
+    <Units>md</Units>
+    <Minimum>0.1</Minimum>
+    <Maximum>10000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Logarithmic</Type>
+    <PlotGroup>Permeability</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="BulkDensity_Core">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>RHOBulk</Mnemonic>
+    <Units>kg/m3</Units>
+    <Minimum>2000</Minimum>
+    <Maximum>3000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Core</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="GrainDensity_Core">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>RHOGrain</Mnemonic>
+    <Units>kg/m3</Units>
+    <Minimum>2000</Minimum>
+    <Maximum>3000</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>Core</PlotGroup>
+    <Colour>White</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+</CurveParameters>
