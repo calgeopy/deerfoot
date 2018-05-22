@@ -195,6 +195,13 @@
           <item row="20" column="0" colspan="3">
            <widget class="QComboBox" name="cbLogDisplay"/>
           </item>
+          <item row="23" column="0">
+           <widget class="QPushButton" name="btn_test">
+            <property name="text">
+             <string>PushButton</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
