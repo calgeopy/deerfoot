@@ -280,21 +280,21 @@ class AppMainWindow(QMainWindow):
 #        print('plottedlogs',plottedlogs[0]['curves'])
 
         y = self.w.survey_basis()
-        
-#        print(self.w.df().describe())
 
-        i=0
+        i = 0
         for cv in plottedlogs[0]['curves']:
             plt = self.gvLogs.addPlot(name="Logs" + str(i))
             self.plots.append(plt)
             if type(cv) == list:
                 title = cv[0]
                 for c in cv:
-                    name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(c, curves_info, search='name')
+                    name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(c, curves_info,
+                                                                                                        search='name')
                     x = self.w.df()[c].values
                     plt.plot(x, y,pen=QtGui.QColor(colour))
             else:
-                name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(cv, curves_info, search='name')
+                name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(cv, curves_info,
+                                                                                                    search='name')
                 title = cv
                 x = self.w.df()[cv].values
                 plt.plot(x, y,pen=QtGui.QColor(colour))
