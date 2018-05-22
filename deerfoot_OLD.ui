@@ -23,55 +23,38 @@
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QGroupBox" name="groupBox">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
          <property name="title">
           <string>Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
-          <item row="13" column="0">
-           <widget class="QPushButton" name="btn_removetop">
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_5">
             <property name="text">
-             <string>Remove</string>
+             <string>Plot2</string>
             </property>
            </widget>
           </item>
-          <item row="12" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Depth</string>
-            </property>
-           </widget>
+          <item row="7" column="1" colspan="2">
+           <widget class="QComboBox" name="cb_plot2"/>
           </item>
-          <item row="10" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Top</string>
-            </property>
-           </widget>
-          </item>
-          <item row="14" column="0">
-           <widget class="QPushButton" name="btn_loadtops">
-            <property name="text">
-             <string>Load Tops from File</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="label_4">
             <property name="text">
-             <string>Plot Type</string>
+             <string>Plot1</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="QComboBox" name="cbLogDisplay"/>
+          <item row="10" column="1" colspan="2">
+           <widget class="QComboBox" name="cb_plot4"/>
           </item>
-          <item row="7" column="1">
+          <item row="3" column="1" colspan="2">
+           <widget class="QPushButton" name="btn_loadlas">
+            <property name="text">
+             <string>Load</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="1" colspan="2">
            <widget class="QPushButton" name="btnPlotlas">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -84,27 +67,89 @@
             </property>
            </widget>
           </item>
-          <item row="10" column="1">
-           <widget class="QLineEdit" name="le_topname"/>
+          <item row="2" column="1" colspan="2">
+           <widget class="QPushButton" name="btnGetfilename">
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
           </item>
-          <item row="12" column="1">
-           <widget class="QLineEdit" name="le_topdepth"/>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>File</string>
+            </property>
+           </widget>
           </item>
-          <item row="13" column="1">
+          <item row="18" column="1" colspan="2">
            <widget class="QPushButton" name="btn_addtop">
             <property name="text">
              <string>Add</string>
             </property>
            </widget>
           </item>
-          <item row="14" column="1">
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Plot3</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="QLineEdit" name="le_filename">
+            <property name="text">
+             <string>P-129_out.LAS</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="2">
+           <widget class="QComboBox" name="cb_plot1"/>
+          </item>
+          <item row="9" column="1" colspan="2">
+           <widget class="QComboBox" name="cb_plot3"/>
+          </item>
+          <item row="17" column="1" colspan="2">
+           <widget class="QLineEdit" name="le_topdepth"/>
+          </item>
+          <item row="19" column="1" colspan="2">
            <widget class="QPushButton" name="btn_plottops">
             <property name="text">
              <string>Plot Tops</string>
             </property>
            </widget>
           </item>
-          <item row="15" column="1">
+          <item row="17" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Depth</string>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Top</string>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="0">
+           <widget class="QPushButton" name="btn_removetop">
+            <property name="text">
+             <string>Remove</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Plot4</string>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="1" colspan="2">
+           <widget class="QLineEdit" name="le_topname"/>
+          </item>
+          <item row="23" column="2">
            <spacer name="verticalSpacer">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -117,7 +162,14 @@
             </property>
            </spacer>
           </item>
-          <item row="9" column="0" colspan="2">
+          <item row="19" column="0">
+           <widget class="QPushButton" name="btn_loadtops">
+            <property name="text">
+             <string>Load Tops from File</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="0" colspan="3">
            <widget class="QTableWidget" name="tbl_tops">
             <property name="minimumSize">
              <size>
@@ -140,10 +192,13 @@
             </column>
            </widget>
           </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QPushButton" name="btn_loadlas">
+          <item row="20" column="0" colspan="3">
+           <widget class="QComboBox" name="cbLogDisplay"/>
+          </item>
+          <item row="23" column="0">
+           <widget class="QPushButton" name="btn_test">
             <property name="text">
-             <string>Load LAS File</string>
+             <string>PushButton</string>
             </property>
            </widget>
           </item>
@@ -153,7 +208,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox_8">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>100</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -167,16 +222,91 @@
          <property name="title">
           <string>Logs</string>
          </property>
-         <widget class="GraphicsLayoutWidget" name="gvLogs">
+         <widget class="PlotWidget" name="gvPlot3">
+          <property name="geometry">
+           <rect>
+            <x>295</x>
+            <y>23</y>
+            <width>98</width>
+            <height>765</height>
+           </rect>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="PlotWidget" name="gvPlot1">
+          <property name="geometry">
+           <rect>
+            <x>87</x>
+            <y>23</y>
+            <width>98</width>
+            <height>765</height>
+           </rect>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="PlotWidget" name="gvPlot2">
+          <property name="geometry">
+           <rect>
+            <x>191</x>
+            <y>23</y>
+            <width>98</width>
+            <height>765</height>
+           </rect>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="PlotWidget" name="gvPlot4">
+          <property name="geometry">
+           <rect>
+            <x>399</x>
+            <y>23</y>
+            <width>98</width>
+            <height>765</height>
+           </rect>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+         <widget class="PlotWidget" name="gvPlotzoi">
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>20</y>
-            <width>361</width>
-            <height>771</height>
+            <y>23</y>
+            <width>71</width>
+            <height>765</height>
            </rect>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>16777215</height>
+           </size>
+          </property>
          </widget>
+         <zorder>gvPlot4</zorder>
+         <zorder>gvPlot2</zorder>
+         <zorder>gvPlot3</zorder>
+         <zorder>gvPlotzoi</zorder>
+         <zorder>gvPlot1</zorder>
         </widget>
        </item>
        <item>
@@ -243,12 +373,6 @@
              </item>
              <item row="4" column="7">
               <widget class="QLineEdit" name="le_trendlineint">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
                <property name="maximumSize">
                 <size>
                  <width>150</width>
@@ -261,6 +385,13 @@
               <widget class="QPushButton" name="btn_startcrossplot">
                <property name="text">
                 <string>Launch CP</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="7">
+              <widget class="QPushButton" name="btn_trendline">
+               <property name="text">
+                <string>Add Trendline</string>
                </property>
               </widget>
              </item>
@@ -283,7 +414,7 @@
                 <bool>true</bool>
                </property>
                <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
@@ -307,41 +438,22 @@
               <widget class="QComboBox" name="cb_y"/>
              </item>
              <item row="3" column="8">
-              <widget class="QSlider" name="hzSlider_slope">
-               <property name="pageStep">
-                <number>3</number>
+              <widget class="QScrollBar" name="horizontalScrollBar">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="tickPosition">
-                <enum>QSlider::TicksBelow</enum>
                </property>
               </widget>
              </item>
              <item row="4" column="8">
-              <widget class="QSlider" name="hzSlider_intercept">
-               <property name="pageStep">
-                <number>3</number>
-               </property>
+              <widget class="QScrollBar" name="horizontalScrollBar_2">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="tickPosition">
-                <enum>QSlider::TicksBelow</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="7">
-              <widget class="QPushButton" name="btn_trendline">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Add Trendline</string>
                </property>
               </widget>
              </item>
@@ -359,8 +471,8 @@
             <zorder>le_trendlineslope</zorder>
             <zorder>label_12</zorder>
             <zorder>le_trendlineint</zorder>
-            <zorder>hzSlider_slope</zorder>
-            <zorder>hzSlider_intercept</zorder>
+            <zorder>horizontalScrollBar</zorder>
+            <zorder>horizontalScrollBar_2</zorder>
            </widget>
           </item>
          </layout>
@@ -384,7 +496,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionLOAD_LAS_File"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
@@ -412,11 +523,6 @@
     <string>Setup</string>
    </property>
   </action>
-  <action name="actionLOAD_LAS_File">
-   <property name="text">
-    <string>Load LAS</string>
-   </property>
-  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -424,14 +530,16 @@
    <extends>QGraphicsView</extends>
    <header location="global">pyqtgraph</header>
   </customwidget>
-  <customwidget>
-   <class>GraphicsLayoutWidget</class>
-   <extends>QGraphicsView</extends>
-   <header location="global">pyqtgraph</header>
-  </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>btnGetfilename</tabstop>
+  <tabstop>btn_loadlas</tabstop>
+  <tabstop>cb_plot1</tabstop>
+  <tabstop>cb_plot2</tabstop>
+  <tabstop>cb_plot3</tabstop>
+  <tabstop>cb_plot4</tabstop>
   <tabstop>btnPlotlas</tabstop>
+  <tabstop>le_topname</tabstop>
   <tabstop>le_topdepth</tabstop>
   <tabstop>btn_addtop</tabstop>
   <tabstop>btn_plottops</tabstop>
