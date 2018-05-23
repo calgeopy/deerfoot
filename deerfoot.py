@@ -32,13 +32,15 @@ curve_displ.append({'name': 'LMR', 'curves': [['GammaRay', 'SelfPot'], 'Lambda',
 class AppMainWindow(QMainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
-        loadUi("deerfoot_new.ui", self)
+        loadUi("deerfoot.ui", self)
 
         self.actionAbout.triggered.connect(self.clickabout)
-#        self.actionSetup.triggered.connect(self.menusetup)
+        self.actionSetup_2.triggered.connect(self.SetupDialog)
+
 
 #        self.btnGetfilename.clicked.connect(self.getfilename)
         self.btn_loadlas.clicked.connect(self.loadlas)
+        self.actionLoad_LAS_File.triggered.connect(self.loadlas)
 #        self.btnPlotlas.clicked.connect(self.plotlasOLD)
         self.btnPlotlas.clicked.connect(self.plotlas)
         
@@ -62,10 +64,12 @@ class AppMainWindow(QMainWindow):
         
     # self.hzSlider_slope.valueChanged.connect(self.Slidervaluechange)
 
-    # def btntest(self):
-    #
-    #     print( ' it works ')
 
+#added by C. Hooge    
+    def SetupDialog(self):
+        self.ui = loadUi("setup.ui")
+        self.ui.show()
+        
     def removetop(self):
         remtop = self.tbl_tops.currentRow()
         self.tops.remove(self.tops[remtop])
@@ -121,11 +125,9 @@ class AppMainWindow(QMainWindow):
 
     def calculate_elastic_logs(self):
         if 'Sonic' in self.las.curves:
-#            self.w.data["VelComp"] = 1000000/self.w.df()['DT'].values
             self.las.append_curve("VelComp", 1000000/self.las['Sonic'], unit="m/s")
         if 'ShearSonic' in self.las.curves:
             self.las.append_curve("VelShear", 1000000/self.las['ShearSonic'], unit="m/s")
-#            self.w.data["VelShear"]= 1000000/self.w.df()['DTS'].values
         
         elastic = bruges.rockphysics.moduli_dict(self.las['VelComp'], self.las["VelShear"], self.las["Density"])
         self.las.append_curve("BulkModulus", elastic["bulk"], unit="Pa")
@@ -140,12 +142,6 @@ class AppMainWindow(QMainWindow):
         
     def plottops(self):
         for tp in self.tops:
-#            self.gvPlotzoi.addLine(x=None, y=tp[1])
-#            self.gvPlotzoi.addLine(x=None, y=tp[1])
-#            self.gvPlot1.addLine(x=None, y=tp[1])
-#            self.gvPlot2.addLine(x=None, y=tp[1])
-#            self.gvPlot3.addLine(x=None, y=tp[1])
-#            self.gvPlot4.addLine(x=None, y=tp[1])
             for plt in self.plots:
                 plt.addLine(x=None, y=tp[1])
            
@@ -157,18 +153,9 @@ class AppMainWindow(QMainWindow):
 #        self.le_filename.setText(str(fname[0].replace('\\', '/')))
         self.las_filename = str(fname[0].replace('\\', '/'))
 
-#        self.cb_plot1.clear()
-#        self.cb_plot2.clear()
-#        self.cb_plot3.clear()
-#        self.cb_plot4.clear()
         self.cb_x.clear()
         self.cb_y.clear()
         self.cb_points.clear()
-
-#        self.gvPlot1.clear()
-#        self.gvPlot2.clear()
-#        self.gvPlot3.clear()
-#        self.gvPlot4.clear()
 
         self.gvLogs.clear()
 
@@ -180,7 +167,7 @@ class AppMainWindow(QMainWindow):
         self.cbLogDisplay.clear()
         for crv in self.las.curves:
             if crv.mnemonic != "DEPT":
-                name, mnemonic, min1, max1, reversed1, units,colour = AppMainWindow.Find_Curve_Data(crv.mnemonic,curves_info)
+                name, mnemonic, min1, max1, reversed1, units,colour = helperFunctions.Find_Curve_Data(crv.mnemonic,curves_info,search='mnemonic')
                 self.las.curves.minimum = min1
                 self.las.curves.maximum = max1
                 self.las.curves.reversed = reversed1
@@ -198,86 +185,35 @@ class AppMainWindow(QMainWindow):
                     crv.unit = "ohm-m"
                 if crv.unit.lower() == "us/ft":
 #                    print("here1",crv.mnemonic)
-                    df[crv.mnemonic] = AppMainWindow.ConvertCurveToMetric(df[crv.mnemonic],conversion=3.281)
+                    df[crv.mnemonic] = helperFunctions.ConvertCurveToMetric(df[crv.mnemonic],conversion=3.281)
 #                    df[crv.mnemonic] = df[crv.mnemonic] * 3.281
                     self.las.set_data_from_df(df)
                 if crv.unit.lower() == "g/cm3" or crv.unit.lower() == "gm/cc":
 #                    print("here1",crv.mnemonic)
-                    df[crv.mnemonic] = AppMainWindow.ConvertCurveToMetric(df[crv.mnemonic], conversion=1000)
+                    df[crv.mnemonic] = helperFunctions.ConvertCurveToMetric(df[crv.mnemonic], conversion=1000)
 #                    df[crv.mnemonic] = df[crv.mnemonic] * 1000
                     self.las.set_data_from_df(df)
 
-#            self.cb_plot1.addItem(name)
-#            self.cb_plot2.addItem(name)
-#            self.cb_plot3.addItem(name)
-#            self.cb_plot4.addItem(name)
                 self.cb_x.addItem(name)
                 self.cb_y.addItem(name)
                 self.cb_points.addItem(name)
 
-            
         
         for c in curve_displ:
-#            print(c['name'],c['curves'])
             self.cbLogDisplay.addItem(c['name'])
 
         self.calculate_elastic_logs()
 
-        print(self.las.df().describe())
+#        print(self.las.df().describe())
         
         self.w = Well.from_lasio(self.las)
-#        mainWnd.setWindowTitle("UWI: " + self.w.las.header['Well']['UWI'].value)
         mainWnd.setWindowTitle(mainWnd.windowTitle() + "   File: " + self.las_filename + "   UWI: " + self.w.las.header['Well']['UWI'].value)
 
-    def plotlasOLD(self):
-        y = self.w.survey_basis()
-        x = self.w.data[self.w.df().columns[self.cb_plot1.currentIndex()]]
-#        name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(self.w.df().columns[self.cb_plot1.currentIndex()],curves_info)
 
-        self.gvPlot1.clear()
-        self.gvPlot1.plot(x, y, pen=(1, 4))
-        self.gvPlot1.invertY(True)
-        self.gvPlot1.setTitle(self.w.df().columns[self.cb_plot1.currentIndex()])
-        self.gvPlot1.setMouseEnabled(x=False, y=True)
-
-        x = self.w.data[self.w.df().columns[self.cb_plot2.currentIndex()]]
-        self.gvPlot2.clear()
-        self.gvPlot2.plot(x, y, pen=(2, 4))
-        self.gvPlot2.invertY(True)
-        self.gvPlot2.setTitle(self.w.df().columns[self.cb_plot2.currentIndex()])
-        self.gvPlot2.setYLink(self.gvPlot1)
-        self.gvPlot2.setMouseEnabled(x=False, y=True)
-
-        x = self.w.data[self.w.df().columns[self.cb_plot3.currentIndex()]]
-        self.gvPlot3.clear()
-        self.gvPlot3.plot(x, y, pen=(3, 4))
-        self.gvPlot3.invertY(True)
-        self.gvPlot3.setTitle(self.w.df().columns[self.cb_plot3.currentIndex()])
-        self.gvPlot3.setYLink(self.gvPlot1)
-        self.gvPlot3.setMouseEnabled(x=False, y=True)
-
-        x = self.w.data[self.w.df().columns[self.cb_plot4.currentIndex()]]
-        self.gvPlot4.clear()
-        self.gvPlot4.plot(x, y, pen=(4, 4))
-        self.gvPlot4.invertY(True)
-        self.gvPlot4.setTitle(self.w.df().columns[self.cb_plot4.currentIndex()])
-        self.gvPlot4.setYLink(self.gvPlot1)
-        self.gvPlot4.setMouseEnabled(x=False, y=True)
-
-        self.gvPlotzoi.clear()
-        self.gvPlotzoi.invertY(True)
-        self.gvPlotzoi.setTitle("ZOI")
-        self.gvPlotzoi.setYLink(self.gvPlot1)
-        self.gvPlotzoi.setMouseEnabled(x=False, y=True)
-        self.gvPlotzoi.setLimits(xMin=0, xMax=100)
-        self.ROItest = None
-        
     def plotlas(self):
         self.gvLogs.clear()
         self.plots.clear()
         plottedlogs = [d for d in curve_displ if d['name'] == self.cbLogDisplay.currentText()]
-#        print('cbLogDisplay',self.cbLogDisplay.currentText(),'plottedlogs',plottedlogs)
-#        print('plottedlogs',plottedlogs[0]['curves'])
 
         y = self.w.survey_basis()
 
@@ -288,12 +224,12 @@ class AppMainWindow(QMainWindow):
             if type(cv) == list:
                 title = cv[0]
                 for c in cv:
-                    name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(c, curves_info,
+                    name, mnemonic, min1, max1, reversed1,units,colour  = helperFunctions.Find_Curve_Data(c, curves_info,
                                                                                                         search='name')
                     x = self.w.df()[c].values
                     plt.plot(x, y,pen=QtGui.QColor(colour))
             else:
-                name, mnemonic, min1, max1, reversed1,units,colour  = AppMainWindow.Find_Curve_Data(cv, curves_info,
+                name, mnemonic, min1, max1, reversed1,units,colour  = helperFunctions.Find_Curve_Data(cv, curves_info,
                                                                                                     search='name')
                 title = cv
                 x = self.w.df()[cv].values
@@ -320,8 +256,6 @@ class AppMainWindow(QMainWindow):
         plt_roi.setLimits(xMin=0, xMax=100)
         plt_roi.hideAxis('left')
         self.ROItest = None
-
-#        print('logs',self.plots)
 
 
         def updatecrossplot():
@@ -411,14 +345,16 @@ class AppMainWindow(QMainWindow):
 #        self.l1.setFont(QFont("Arial",size))
 
     def clickabout(self):
-        QMessageBox.about(self, "About", "Created by calgeopy\nMarch, 2018")
+        QMessageBox.about(self, "About", "Created by calgeopy\nMarch, 2018,\r\nand greatly extended in April and May")
 
+        
 #added by C. Hooge    
+class helperFunctions:
     def CheckMnemonic(crv,lascrvs,curves_info):
         orig_mn = crv.mnemonic
         pos = [0]
         if crv.mnemonic != "DEPT":
-            name,mnemonic = AppMainWindow.Find_Curve_Data(crv.mnemonic,curves_info)
+            name,mnemonic = helperFunctions.Find_Curve_Data(crv.mnemonic,curves_info)
 #        print('mnemonic check',orig_mn,name,mnemonic)
             if name is not None:
                 txt_alias2 = ".//*[@name='" + name + "']/Aliases/Name"
@@ -447,17 +383,17 @@ class AppMainWindow(QMainWindow):
         
         return crv
 
-    def Find_Curve_Data(crv,curves_info,search='mnemonic'):
+    def Find_Curve_Data(crv_mn,curves_info,search='mnemonic'):
         if search == 'mnemonic':
-            txt = 'Curve[Mnemonic="' + crv + '"]'
-            txt_alias = "Curve/Aliases[Name='" + crv + "']"
+            txt = 'Curve[Mnemonic="' + crv_mn + '"]'
+            txt_alias = "Curve/Aliases[Name='" + crv_mn + "']"
         if (search == 'name'):
 #            txt ='Curve[Name="' + crv + '"]'
-            txt = "Curve[@name='" + crv + "']"
+            txt = "Curve[@name='" + crv_mn + "']"
             txt_alias = ""
 
         crv_fnd = curves_info.find(txt)
-        print('search',search,crv,txt,crv_fnd)
+#        print('search',search,crv_mn,txt,crv_fnd)
 
         name = None
         mnemonic = None
@@ -491,13 +427,6 @@ class AppMainWindow(QMainWindow):
         return crv_data * conversion
         
     
-#added by C. Hooge    
-#    def menusetup(self):
-#        menusetup = QDialogClass()
-#        menusetup.exec_()        
-        #loadUi("deerfoot_setup.ui", self)
-
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     mainWnd = AppMainWindow()
