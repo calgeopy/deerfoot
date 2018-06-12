@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <CurveParameters>
   <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="CurveParameters">
@@ -245,17 +245,17 @@
     <Type>Linear</Type>
     <PlotGroup>SelfPot</PlotGroup>
     <Colour>Orange</Colour>
-    <Aliases><Name>SelfPotCG</Name>
-		<Name>SelfPotD</Name>
-		<Name>SelfPotDF</Name>
-		<Name>HSelfPot</Name>
-		<Name>IRSelfPot</Name>
-		<Name>IDSelfPot</Name>
-		<Name>SelfPotCG</Name>
-		<Name>SelfPotH</Name>
-		<Name>SelfPotC</Name>
-		<Name>SelfPotL</Name>
-		<Name>SelfPotDL</Name></Aliases>
+    <Aliases><Name>SPCG</Name>
+		<Name>SPD</Name>
+		<Name>SPDF</Name>
+		<Name>HSP</Name>
+		<Name>IRSP</Name>
+		<Name>IDSP</Name>
+		<Name>SPCG</Name>
+		<Name>SPH</Name>
+		<Name>SPC</Name>
+		<Name>SPL</Name>
+		<Name>SPDL</Name></Aliases>
   </Curve>
   <Curve name ="DeepRes">
     <APICode> 0   0  0  1</APICode>
@@ -601,7 +601,7 @@
 		<Name>PEF</Name>
 		<Name>PEFZ</Name>
 		<Name>PEDN</Name>
-		<Name>LSelfPotE</Name>
+		<Name>LSPE</Name>
 		<Name>PEF8</Name>
 		<Name>HPEF</Name>
 		<Name>PEFL</Name>
@@ -876,7 +876,7 @@
   </Curve>
   <Curve name ="SonicPorSand">
     <APICode> 0   0  0  1</APICode>
-    <Mnemonic>SelfPotSS</Mnemonic>
+    <Mnemonic>SPSS</Mnemonic>
     <Units>fract</Units>
     <Minimum>-.15</Minimum>
     <Maximum>.45</Maximum>
@@ -885,12 +885,12 @@
     <Type>Linear</Type>
     <PlotGroup>Porosity</PlotGroup>
     <Aliases><Name>RPSS</Name>
-		<Name>SelfPotSS_Calc</Name></Aliases>
+		<Name>SPSS_Calc</Name></Aliases>
     <Colour>White</Colour>
   </Curve>
   <Curve name ="SonicPorLime">
     <APICode> 0   0  0  1</APICode>
-    <Mnemonic>SelfPotLS</Mnemonic>
+    <Mnemonic>SPLS</Mnemonic>
     <Units>fract</Units>
     <Minimum>-.15</Minimum>
     <Maximum>.45</Maximum>
@@ -900,13 +900,13 @@
     <PlotGroup>Porosity</PlotGroup>
     <Colour>White</Colour>
     <Aliases><Name>RPHI</Name>
-		<Name>SelfPotHI</Name>
+		<Name>SPHI</Name>
 		<Name>RPLS</Name>
-		<Name>SelfPotLS_Calc</Name></Aliases>
+		<Name>SPLS_Calc</Name></Aliases>
   </Curve>
   <Curve name ="SonicPorDol">
     <APICode> 0   0  0  1</APICode>
-    <Mnemonic>SelfPotDL</Mnemonic>
+    <Mnemonic>SPDL</Mnemonic>
     <Units>fract</Units>
     <Minimum>-.15</Minimum>
     <Maximum>.45</Maximum>
@@ -916,7 +916,7 @@
     <PlotGroup>Porosity</PlotGroup>
     <Colour>White</Colour>
     <Aliases><Name>RPDL</Name>
-		<Name>SelfPotDL_Calc</Name></Aliases>
+		<Name>SPDL_Calc</Name></Aliases>
   </Curve>
   <Curve name ="CaliperX">
     <APICode> 0   0  0  1</APICode>
