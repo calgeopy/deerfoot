@@ -1117,7 +1117,20 @@
     <Reversed>false</Reversed>
     <Format></Format>
     <Type>Linear</Type>
-    <PlotGroup>Acoustic</PlotGroup>
+    <PlotGroup>LMR</PlotGroup>
+    <Colour>Red</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="LambdaRho">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>LAMRHO</Mnemonic>
+    <Units>Pa</Units>
+    <Minimum>0</Minimum>
+    <Maximum>100</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>LMR</PlotGroup>
     <Colour>Red</Colour>
     <Aliases><Name></Name></Aliases>
   </Curve>
@@ -1130,7 +1143,20 @@
     <Reversed>false</Reversed>
     <Format></Format>
     <Type>Linear</Type>
-    <PlotGroup>Acoustic</PlotGroup>
+    <PlotGroup>LMR</PlotGroup>
+    <Colour>DarkGreen</Colour>
+    <Aliases><Name></Name></Aliases>
+  </Curve>
+  <Curve name ="MuRho">
+    <APICode> 0   0  0  1</APICode>
+    <Mnemonic>MURHO</Mnemonic>
+    <Units>Pa</Units>
+    <Minimum>0</Minimum>
+    <Maximum>100</Maximum>
+    <Reversed>false</Reversed>
+    <Format></Format>
+    <Type>Linear</Type>
+    <PlotGroup>LMR</PlotGroup>
     <Colour>DarkGreen</Colour>
     <Aliases><Name></Name></Aliases>
   </Curve>

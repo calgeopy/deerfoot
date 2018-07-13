@@ -5,7 +5,7 @@ block_cipher = None
 
 a = Analysis(['deerfoot.py'],
              pathex=['C:\\Users\\hoogec\\Documents\\GitHub\\deerfoot'],
-             binaries=[],
+             binaries=[('libfoo.so', 'lib')],
              datas=[],
              hiddenimports=[],
              hookspath=[],
