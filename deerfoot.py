@@ -25,7 +25,8 @@ curve_displ.append({'name': 'Resistivity', 'curves': [['GammaRay', 'SelfPot'], [
 curve_displ.append({'name': 'Porosity-Lime', 'curves': [['GammaRay', 'SelfPot'], ['DenPorLime', 'NeutPorLime']]})
 curve_displ.append({'name': 'Porosity-Sand', 'curves': [['GammaRay', 'SelfPot'], ['DenPorSand', 'NeutPorSand']]})
 curve_displ.append({'name': 'Porosity-Dol', 'curves': [['GammaRay', 'SelfPot'], ['DenPorDol', 'NeutPorDol']]})
-curve_displ.append({'name': 'LMR', 'curves': [['GammaRay', 'SelfPot'], ['Lambda'], ['Mu'],['Density']]})
+#curve_displ.append({'name': 'LMR', 'curves': [['GammaRay', 'SelfPot'], ['Lambda'], ['Mu'],['Density']]})
+curve_displ.append({'name': 'LMR', 'curves': [['GammaRay', 'SelfPot'],['Density'], ['LambdaRho'], ['MuRho']]})
 curve_displ.append({'name': 'MiniPlot-Lime', 'curves': [['GammaRay', 'SelfPot'], ['DeepRes', 'MedRes', 'ShallowRes'], ['DenPorLime', 'NeutPorLime']]})
 curve_displ.append({'name': 'MiniPlot-Sand', 'curves': [['GammaRay', 'SelfPot'], ['DeepRes', 'MedRes', 'ShallowRes'], ['DenPorSand', 'NeutPorSand']]})
 curve_displ.append({'name': 'MiniPlot-Dol', 'curves': [['GammaRay', 'SelfPot'], ['DeepRes', 'MedRes', 'ShallowRes'], ['DenPorDol', 'NeutPorDol']]})
@@ -41,12 +42,10 @@ class AppMainWindow(QMainWindow):
         self.actionAbout.triggered.connect(self.clickabout)
         self.actionSetup_2.triggered.connect(self.SetupDialog)
 
-
 #        self.btnGetfilename.clicked.connect(self.getfilename)
         self.btn_loadlas.clicked.connect(self.loadlas)
         self.actionLoad_LAS_File.triggered.connect(self.loadlas)
         self.btnPlotlas.clicked.connect(self.plotlas)
-
 
         self.btn_addtop.clicked.connect(self.addtop)
         self.btn_plottops.clicked.connect(self.plottops)
@@ -80,9 +79,6 @@ class AppMainWindow(QMainWindow):
     def removetop(self):
         remtop = self.tbl_tops.currentRow()
         self.tops.remove(self.tops[remtop])
-
-        # item = self.tbl_tops.takeItem(remtop)
-        # item = None
 
         self.plotlas()
         self.plottops()
@@ -118,6 +114,7 @@ class AppMainWindow(QMainWindow):
         if topsfile.endswith('.csv'):
             topdata = pd.read_csv(topsfile, index_col=0)
 #        uwi = self.w.las.header['Well']['UWI'].value
+#         print(topdata)
         well_tops = topdata[(topdata.index == self.w.las.header['Well']['UWI'].value)]
         well_tops = well_tops.drop(['KB'], axis=1).squeeze().to_dict()
         
@@ -146,6 +143,8 @@ class AppMainWindow(QMainWindow):
             self.las.append_curve("PoissonRatio", elastic["pr"])
             self.las.append_curve("YoungsModulus", elastic["youngs"], unit="Pa")
             self.las.append_curve("VPVS", self.las["VelComp"]/self.las["VelShear"], unit="")
+            self.las.append_curve("LambdaRho", elastic["lam"]*self.las["Density"]/1000000000000, unit="Pa")
+            self.las.append_curve("MuRho", elastic["mu"]*self.las["Density"]/1000000000000, unit="Pa")
 
     def plottops(self):
         for tp in self.tops:
@@ -172,18 +171,19 @@ class AppMainWindow(QMainWindow):
         self.cbLogDisplay.clear()
         for crv in self.las.curves:
             if crv.mnemonic != "DEPT":
-                name, mnemonic, min1, max1, reversed1, units, plottype,colour = helperFunctions.Find_Curve_Data(crv.mnemonic,curves_info,search='mnemonic')
-                self.las.curves.minimum = min1
-                self.las.curves.maximum = max1
-                self.las.curves.reversed = reversed1
-                self.las.curves.units = units
-                self.las.curves.plottype = plottype
-                self.las.curves.colour = colour
+ #               name, mnemonic, min1, max1, reversed1, units, plottype,colour = helperFunctions.Find_Curve_Data(crv.mnemonic,curves_info,search='mnemonic')
+                crvdata = helperFunctions.Find_Curve_Data(crv.mnemonic,curves_info,search='mnemonic')
+                self.las.curves.minimum = crvdata['Minimum']
+                self.las.curves.maximum = crvdata['Maximum']
+                self.las.curves.reversed = crvdata['Reversed']
+                self.las.curves.units = crvdata['Units']
+                self.las.curves.plottype = crvdata['PlotType']
+                self.las.curves.colour = crvdata['Colour']
 
-                if name is None:
-                    name = crv.mnemonic
+                if crvdata['Name'] is None:
+                    crvdata['Name'] = crv.mnemonic
 
-                crv.mnemonic = name
+                crv.mnemonic = crvdata['Name']
 
 #                print('crv',crv.mnemonic,crv.unit,plottype)
                 df = self.las.df()
@@ -196,11 +196,13 @@ class AppMainWindow(QMainWindow):
                     df[crv.mnemonic] = helperFunctions.ConvertCurveToMetric(df[crv.mnemonic], conversion=1000)
                     self.las.set_data_from_df(df)
 
-                self.cb_x.addItem(name)
-                self.cb_y.addItem(name)
-                self.cb_points.addItem(name)
 
         self.calculate_elastic_logs()
+        for crv in self.las.curves:
+            if crv.mnemonic != "DEPT":
+                self.cb_x.addItem(crv.mnemonic)
+                self.cb_y.addItem(crv.mnemonic)
+                self.cb_points.addItem(crv.mnemonic)
 
         self.curve_displ_new = []
         for cd in curve_displ:
@@ -209,7 +211,7 @@ class AppMainWindow(QMainWindow):
             z = {**{'name': cd['name']}, **{'curves': new_list}}
             self.curve_displ_new.append(dict(z))
 
-#        print("here",curve_displ_new)
+        # print("here",self.curve_displ_new)
  #        print(self.las.df().describe())
         
         self.w = Well.from_lasio(self.las)
@@ -220,6 +222,7 @@ class AppMainWindow(QMainWindow):
         self.plots.clear()
 #        plottedlogs = [d for d in curve_displ if d['name'] == self.cbLogDisplay.currentText()]
         plottedlogs = [d for d in self.curve_displ_new if d['name'] == self.cbLogDisplay.currentText()]
+        print(self.w.df().describe())
 
         y = self.w.survey_basis()
 
@@ -227,22 +230,25 @@ class AppMainWindow(QMainWindow):
         for cv in plottedlogs[0]['curves']:
             plt = self.gvLogs.addPlot(name="Logs" + str(i))
             self.plots.append(plt)
-            title = cv[0]
+            crvdata = []
             for c in cv:
-                    name, mnemonic, min1, max1, reversed1,units,plottype,colour  = helperFunctions.Find_Curve_Data(c, curves_info,
-                                                                                                        search='name')
-                    x = self.w.df()[c].values
-                    plt.plot(x, y,pen=QtGui.QColor(colour))
-#                    print(c,"ehrerh1", plottype,colour)
-                    if (plottype == "Logarithmic"):
-                        plt.setLogMode(x=True, y=False)
+#                    name, mnemonic, min1, max1, reversed1,units,plottype,colour  = helperFunctions.Find_Curve_Data(c, curves_info,
+#                                                                                                        search='name')
+                crvdata.append(helperFunctions.Find_Curve_Data(c, curves_info,search='name'))
+                x = self.w.df()[c].values
+                print('c',c,crvdata[-1]['Colour'])
+                plt.plot(x, y,pen=QtGui.QColor(crvdata[-1]['Colour']))
+                if (crvdata[-1]['PlotType'] == "Logarithmic"):
+                    plt.setLogMode(x=True, y=False)
 
- #          print(min1,max1,helperFunctions.str2bool(reversed1))
-            plt.invertX(helperFunctions.str2bool(reversed1))
-            plt.setXRange(float(min1),float(max1), padding=0)
+            print('h    ',crvdata[0]['Colour'])
+
+            plt.invertX(helperFunctions.str2bool(crvdata[0]['Reversed']))
+            plt.setXRange(float(crvdata[0]['Minimum']),float(crvdata[0]['Maximum']), padding=0)
             plt.invertY(True)
-            plt.setTitle(title)
+            plt.setTitle(cv[0])
             plt.setMouseEnabled(x=False, y=True)
+            plt.showGrid(x=True, y=True)
             #            plt.setXRange(float(min1),float(max1))
             if (i > 0):
                 plt.setYLink('Logs0')
@@ -250,7 +256,6 @@ class AppMainWindow(QMainWindow):
             i=i+1
             
         plt_roi = self.gvLogs.addPlot(name="ROI")
-#        self.plots.append([i, plt_roi])
         self.plots.append(plt_roi)
 
         plt_roi.invertY(True)
@@ -290,6 +295,8 @@ class AppMainWindow(QMainWindow):
         from matplotlib import cm
 
         self.crossplotisdispayed = True  # tells ZOI that crossplot is displaying data
+
+
 
         x = self.w.data[self.w.df().columns[self.cb_x.currentIndex()]]
         y = self.w.data[self.w.df().columns[self.cb_y.currentIndex()]]
@@ -398,25 +405,26 @@ class helperFunctions:
         orig_mn = crv.mnemonic
         pos = [0]
         if crv.mnemonic != "DEPT":
-            name, mnemonic, min1, max1, reversed1, units, plottype, colour = helperFunctions.Find_Curve_Data(crv.mnemonic,curves_info)
+ #           name, mnemonic, min1, max1, reversed1, units, plottype, colour = helperFunctions.Find_Curve_Data(crv.mnemonic,curves_info)
+            crvdata = helperFunctions.Find_Curve_Data(crv.mnemonic,curves_info)
 #        print('mnemonic check',orig_mn,name,mnemonic)
-            if name is not None:
-                txt_alias2 = ".//*[@name='" + name + "']/Aliases/Name"
+            if crvdata['Name'] is not None:
+                txt_alias2 = ".//*[@name='" + crvdata['Name'] + "']/Aliases/Name"
                 crv_fnd_all = curves_info.findall(txt_alias2)
                 pos = [i for i,x in enumerate(crv_fnd_all) if x.text==orig_mn]
         
 #            print("hereA",name,orig_mn,pos,len(pos),(name in lascrvs))
                        
-                if mnemonic is not None:
-                    if name in lascrvs:
+                if crvdata['Mnemonic'] is not None:
+                    if crvdata['Name'] in lascrvs:
                         if len(pos) > 0:
-                            crv.mnemonic = name + "_" + str(pos[0])
+                            crv.mnemonic = crvdata['Name'] + "_" + str(pos[0])
                         else:
-                            crv.mnemonic = name + "_0"
+                            crv.mnemonic = crvdata['Name'] + "_0"
                     
 #                crv.mnemonic = name
                     else:
-                        crv.mnemonic = name
+                        crv.mnemonic = crvdata['Name']
                 
 #        crv.original_mnemonic = orig_mn
         else:
@@ -431,6 +439,7 @@ class helperFunctions:
         if search == 'mnemonic':
             txt = 'Curve[Mnemonic="' + crv_mn + '"]'
             txt_alias = "Curve/Aliases[Name='" + crv_mn + "']"
+#            txt_alias = "Curve/Aliases[@name='" + crv_mn + "']"
         if (search == 'name'):
             txt = "Curve[@name='" + crv_mn + "']"
             txt_alias = ""
@@ -467,8 +476,9 @@ class helperFunctions:
                 colour = crv_fnd.getparent().findtext('Colour')
                 plottype = crv_fnd.getparent().findtext('Type')
 
-        return name, mnemonic, min1, max1, reversed1, units, plottype, colour
-    
+#        return name, mnemonic, min1, max1, reversed1, units, plottype, colour
+        return {'Name':name, 'Mnemonic':mnemonic, 'Minimum':min1, 'Maximum': max1, 'Reversed':reversed1, 'Units':units, 'PlotType':plottype, 'Colour':colour}
+
     def ConvertCurveToMetric(crv_data,conversion=1):
         return crv_data * conversion
         
